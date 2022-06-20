@@ -7,7 +7,7 @@ var transporter = nodemailer.createTransport({
     auth: {
       type: "OAuth2",
       user: "ManganagerMail@gmail.com",
-      accessToken: "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"
+      accessToken: ""
     }
 });
 
