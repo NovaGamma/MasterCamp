@@ -1,9 +1,10 @@
 <template>
-  <div id="nav">
+  <div  id="nav">
     <router-link to="/">Comments</router-link> |
     <div v-if="!token">
       <router-link to="/Login">Login</router-link> |
-      <router-link to="/Register">Register</router-link>
+      <router-link to="/Register">Register</router-link> |
+      <router-link to="/PageCandidat">Candidats</router-link>
     </div>
     <div v-else>
       <router-link v-if="user.fullName != 'Admin'" to="/AddComment">Add Comment</router-link>
