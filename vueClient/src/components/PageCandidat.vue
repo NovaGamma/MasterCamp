@@ -6,7 +6,7 @@
         <h1>Nom : {{ candidat }}</h1>
         <h2>Parti : finito</h2>
         <h3>Programme : bouh bouh bouh bouh </h3>
-        <h3>Membres du parti : </h3>
+        <h3>Membres du parti : Michel</h3>
       </div>
     </div>
   </section>
