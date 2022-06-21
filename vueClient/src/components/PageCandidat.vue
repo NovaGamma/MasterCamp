@@ -1,27 +1,54 @@
 <template>
-  <section class="container">
-    <div class="ListeCandidat" v-for="candidat in candidats" :key="candidat.id">
-      <img class="CandidatPic" src="../assets/saltbae.png">
-      <div class="text">
-        <h1>Nom : {{ candidat }}</h1>
-        <h2>Parti : finito</h2>
-        <h3>Programme : bouh bouh bouh bouh </h3>
-        <h3>Membres du parti : Michel</h3>
-      </div>
+
+    <div class="container" v-if="!showCandidat">
+      <Candidat class="ListeCandidat" v-for="(candidat,index) in list_candidats" :key="index" :candidat="candidat" v-on:click="showCandidate(index)"/>
     </div>
-  </section>
+    <div class="Profil" v-else>
+      <ProfilCandidat class="Profil" :candidat="list_candidats[indexCandidat]"/>
+    </div>
+
 </template>
 
 <script>
-
+import Candidat from "./Candidat";
+import ProfilCandidat from "./ProfilCandidat";
 export default {
   name: "PageCandidat",
+  components: {ProfilCandidat, Candidat},
+  methods:{
+    showCandidate(index){
+      this.showCandidat=!this.showCandidat;
+      this.indexCandidat=index;
+    }
+  },
+
   data(){
     return {
-      candidats: ["SaltBae","candidat2","candidat3","candidat4","candidat5","candidat6"],
+      indexCandidat: 0,
+      showCandidat: false,
+      list_candidats: [
+        {
+          nom : "Saltbae",
+          parti : "Salt",
+          programme: "Bae",
+        },
+        {
+          nom : "Johnny",
+          parti : "Salt",
+          programme: "Bae",
+        },
+        {
+          nom : "Michel",
+          parti : "Salt",
+          programme: "Bae",
+        },
+
+      ],
     }
   },
 }
+
+
 </script>
 
 <style scoped>
@@ -33,23 +60,22 @@ export default {
   align-items: center;
   width: 1200px;
   box-shadow: 4px 4px 4px black;
+  border: none;
 }
 
-.CandidatPic{
-  width: 100px;
-  margin: 10px;
-}
 
-.text{
-  margin: 10px;
-  text-align: left;
-}
 
 .container{
   display: flex;
   flex-wrap: wrap;
   background-color: #ffe4c4;
   justify-content: center;
+}
+
+
+
+.ListeCandidat:hover{
+  background-color: lightgrey;
 }
 
 </style>
