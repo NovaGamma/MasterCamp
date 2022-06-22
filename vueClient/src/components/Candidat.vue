@@ -35,6 +35,7 @@ export default {
 .text{
   margin: 10px;
   text-align: left;
+  word-wrap: normal;
 }
 
 </style>

@@ -1,12 +1,12 @@
 <template>
-
-    <div class="container" v-if="!showCandidat">
+  <section class="container">
+    <div v-if="!showCandidat">
       <Candidat class="ListeCandidat" v-for="(candidat,index) in list_candidats" :key="index" :candidat="candidat" v-on:click="showCandidate(index)"/>
     </div>
     <div class="Profil" v-else>
-      <ProfilCandidat class="Profil" :candidat="list_candidats[indexCandidat]"/>
+      <ProfilCandidat  :candidat="list_candidats[indexCandidat]"/>
     </div>
-
+  </section>
 </template>
 
 <script>
@@ -30,7 +30,7 @@ export default {
         {
           nom : "Saltbae",
           parti : "Salt",
-          programme: "Bae",
+          programme: "SIUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU",
         },
         {
           nom : "Johnny",
@@ -42,7 +42,16 @@ export default {
           parti : "Salt",
           programme: "Bae",
         },
-
+        {
+          nom : "Kylian",
+          parti : "Salt",
+          programme: "Bae",
+        },
+        {
+          nom : "Zidane",
+          parti : "Salt",
+          programme: "Bae",
+        },
       ],
     }
   },
@@ -51,7 +60,7 @@ export default {
 
 </script>
 
-<style scoped>
+<style>
 
 .ListeCandidat{
   display: flex;
@@ -61,9 +70,15 @@ export default {
   width: 1200px;
   box-shadow: 4px 4px 4px black;
   border: none;
+  word-wrap: normal;
 }
 
-
+.Profil{
+  display: flex;
+  background-color: white;
+  justify-content: center;
+  margin: 20px;
+}
 
 .container{
   display: flex;
@@ -71,7 +86,6 @@ export default {
   background-color: #ffe4c4;
   justify-content: center;
 }
-
 
 
 .ListeCandidat:hover{

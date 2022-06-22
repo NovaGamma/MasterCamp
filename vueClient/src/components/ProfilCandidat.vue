@@ -1,5 +1,5 @@
 <template>
-  <section class="container">
+  <section class="container2">
     <div class="head">
       <img class="CandidatPic" src="../assets/saltbae.png" >
       <div class="Headline">
@@ -9,8 +9,9 @@
       <img class="LogoParti" src="../assets/stonks.png" >
     </div>
     <div class="Infos">
-      <h3>Programme : {{ candidat.programme }} </h3>
-      <h3>Membres du parti : Michel</h3>
+      <h3 class="Programme">Programme : {{ candidat.programme }} </h3>
+      <h3>Membres du parti : </h3>
+      <h3 >{{candidat.liste}}</h3>
     </div>
 
   </section>
@@ -25,13 +26,14 @@ export default {
       nom: String,
       parti: String,
       programme: String,
+      liste: DOMStringList,
     }
 
   },
 }
 </script>
 
-<style scoped>
+<style>
 
 .CandidatPic{
   width: 200px;
@@ -49,11 +51,19 @@ export default {
 
 .head{
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
+  margin: 20px;
+}
+
+.container2{
+  display: flex;
+  flex-direction: column;
+  width: 1400px;
 }
 
 .Infos{
+  margin: 20px;
+  text-align: left;
 
 }
 
