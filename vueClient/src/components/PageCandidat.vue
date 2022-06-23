@@ -3,8 +3,9 @@
     <div v-if="!showCandidat">
       <Candidat class="ListeCandidat" v-for="(candidat,index) in list_candidats" :key="index" :candidat="candidat" v-on:click="showCandidate(index)"/>
     </div>
-    <div class="Profil" v-else>
-      <ProfilCandidat  :candidat="list_candidats[indexCandidat]"/>
+    <div v-else>
+      <button class="retour" v-on:click="showCandidat=false">Retour</button>
+      <ProfilCandidat class="Profil"  :candidat="list_candidats[indexCandidat]"/>
     </div>
   </section>
 </template>
@@ -30,7 +31,7 @@ export default {
         {
           nom : "Saltbae",
           parti : "Salt",
-          programme: "SIUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU",
+          programme: "SIUUUUUUUUUUUUUUU UUUUUUUUUUUUU UUUUUUUUUUUUUU UUUUUUUUUUUUU UUUUUUUUUUUUU UUUUUUUUUUUUUUU UUUUUUUUUUUUUU UUUUUUUUUUUU UUUUUUUUUUUU UUUUUUUUU",
         },
         {
           nom : "Johnny",
@@ -68,7 +69,7 @@ export default {
   margin: 15px;
   align-items: center;
   width: 1200px;
-  box-shadow: 4px 4px 4px black;
+  box-shadow: 4px 4px 4px darkgrey;
   border: none;
   word-wrap: normal;
 }
@@ -83,13 +84,38 @@ export default {
 .container{
   display: flex;
   flex-wrap: wrap;
-  background-color: #ffe4c4;
+  background-color: azure;
   justify-content: center;
 }
 
-
 .ListeCandidat:hover{
   background-color: lightgrey;
+}
+
+.ListeCandidat:active{
+  background-color: grey;
+}
+
+.retour{
+  margin: 10px;
+  display: flex;
+  border: solid whitesmoke;
+  width: 100px;
+  height: 30px;
+  justify-content: center;
+  font-size: large;
+  background-color: white;
+  box-shadow: 4px 4px 4px darkgrey;
+}
+
+.retour:hover{
+  background-color: lightgrey;
+  border: solid lightgrey;
+}
+
+.retour:active{
+  background-color: darkgrey;
+  border: solid darkgrey;
 }
 
 </style>

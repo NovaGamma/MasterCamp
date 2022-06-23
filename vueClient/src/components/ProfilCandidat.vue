@@ -13,7 +13,6 @@
       <h3>Membres du parti : </h3>
       <h3 >{{candidat.liste}}</h3>
     </div>
-
   </section>
 </template>
 
@@ -53,18 +52,21 @@ export default {
   display: flex;
   justify-content: space-between;
   margin: 20px;
+  flex-wrap: wrap;
 }
 
 .container2{
+  border: solid whitesmoke;
   display: flex;
   flex-direction: column;
   width: 1400px;
+  flex-wrap: wrap;
+  box-shadow: 4px 4px 4px darkgrey;
 }
 
 .Infos{
   margin: 20px;
   text-align: left;
-
 }
 
 </style>

@@ -2,7 +2,7 @@
   <div class="ntm">
     <div class="NavSup">
       <img class="LogoSite" src="../assets/mmmmh.jpg">
-      <h2 class="textSup">Profil d'électeur</h2>
+      <router-link class="textSup" to="/ProfilElecteur">Profil d'électeur</router-link>
     </div>
     <div class="nav" id="nav">
       <div v-if="!token">
@@ -86,6 +86,8 @@ export default{
   .textSup{
     display: flex;
     margin: 30px;
+    font-size: xx-large;
+    color: black;
   }
 
   .ntm{
@@ -95,6 +97,7 @@ export default{
     position: sticky;
     top: 0;
     flex-direction: column;
+    box-shadow: 5px 5px 5px darkgrey;
   }
 
 </style>
