@@ -2,13 +2,13 @@
   <div class="ntm">
     <div class="NavSup">
       <img class="LogoSite" src="../assets/mmmmh.jpg">
-      <router-link class="textSup" to="/ProfilElecteur">Profil d'électeur</router-link>
+      <h3><router-link class="textSup" to="/ProfilElecteur">Profil d'électeur</router-link></h3>
     </div>
     <div class="nav" id="nav">
       <div v-if="!token">
-        <router-link to="/Login">Login</router-link> |
-        <router-link to="/Register">Register</router-link> |
-        <router-link to="/PageCandidat">Candidats</router-link>
+        <router-link style="padding:100px" to="/Login">Login</router-link>
+        <router-link class="route" to="/Register">Register</router-link>
+        <router-link style="padding:100px" to="/PageCandidat">Candidats</router-link>
       </div>
       <div v-else>
         <router-link v-if="user.fullName != 'Admin'" to="/AddComment">Add Comment</router-link>
@@ -69,6 +69,14 @@ export default{
     justify-content: center;
     background-color: lightskyblue;
     font-size: x-large;
+    border-top: solid 1px azure;
+  }
+
+  .route{
+    border-left: solid 1px azure;
+    border-right: solid 1px azure;
+    padding: 20px 100px 20px 100px;
+
   }
 
   .LogoSite{
@@ -88,16 +96,21 @@ export default{
     margin: 30px;
     font-size: xx-large;
     color: black;
+    text-decoration: none;
+  }
+
+  .textSup:active{
+    color: blue;
   }
 
   .ntm{
     display: flex;
-    background-color: lightskyblue;
     justify-content: space-between;
     position: sticky;
     top: 0;
     flex-direction: column;
     box-shadow: 5px 5px 5px darkgrey;
   }
+
 
 </style>

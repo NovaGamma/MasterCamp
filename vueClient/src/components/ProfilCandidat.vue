@@ -56,12 +56,11 @@ export default {
 }
 
 .container2{
-  border: solid whitesmoke;
   display: flex;
   flex-direction: column;
   width: 1400px;
   flex-wrap: wrap;
-  box-shadow: 4px 4px 4px darkgrey;
+  box-shadow: 4px 4px 4px 4px darkgrey;
 }
 
 .Infos{

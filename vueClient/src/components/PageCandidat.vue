@@ -69,7 +69,7 @@ export default {
   margin: 15px;
   align-items: center;
   width: 1200px;
-  box-shadow: 4px 4px 4px darkgrey;
+  box-shadow: 4px 4px 4px 4px darkgrey;
   border: none;
   word-wrap: normal;
 }
