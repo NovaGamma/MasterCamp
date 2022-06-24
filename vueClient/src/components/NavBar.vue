@@ -8,8 +8,8 @@
     <div class="nav" id="nav">
       <div v-if="!token">
         <router-link style="padding:100px;" to="/PageCandidat">Candidats</router-link>
-        <router-link class="route" to="/Register">Voter</router-link>
-        <router-link style="padding:100px;" to="/Login">A propos</router-link>
+        <router-link class="route" to="">Voter</router-link>
+        <router-link style="padding:100px;" to="/Apropos">A propos</router-link>
 
       </div>
       <div v-else>

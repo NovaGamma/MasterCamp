@@ -8,12 +8,21 @@ import Register from '../components/Register.vue'
 import Admin from '../components/Admin.vue'
 import PageCandidat from '../components/PageCandidat.vue'
 import ProfilElecteur from '../components/ProfilElecteur.vue'
+import Apropos from '../components/Apropos.vue'
 
 const routes = [
   {
     path: '/',
     name: 'CommentList',
     component: CommentList,
+    meta: {
+      requiresAuth: true,
+    }
+  },
+  {
+    path: '/Apropos',
+    name: 'Apropos',
+    component: Apropos,
     meta: {
       requiresAuth: false,
     }

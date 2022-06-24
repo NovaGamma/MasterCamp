@@ -44,36 +44,16 @@ export default {
     },
     formSubmitted() {
       this.myErrors = [];
-      !this.title ? this.myErrors.push("No title given") : null;
-      this.description.length>500 ? this.myErrors.push("Description too big (please, write less than 500 characters)") : null;
-      this.description.length<1 ? this.myErrors.push("No description given") : null;
+      !this.email ? this.myErrors.push("nul") : null;
+      !this.nbElecteur ? this.myErrors.push("elec") : null;
+      !this.nbIdentite ? this.myErrors.push("elec") : null;
+      !this.password ? this.myErrors.push("pass") : null;
+      !this.Password ? this.myErrors.push("Pass") : null;
+      this.password != this.Password ? this.myErrors.push("bruh") : null;
       if (!this.myErrors.length) {
-        fetch("http://localhost:5000/api/commentCreate", {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'JWT ' + localStorage.getItem("user")
-          },
-          body: JSON.stringify({
-            name : this.user.fullName,
-            description : this.description,
-            title : this.title
-          })
-        })
-            .then((res) => {
-              res.json();
-              this.reset();
-              this.myErrors.push("Comment successfully sent (:")
-              this.$emit("update");
-            });
+        this.register();
       }
     },
-    reset() {
-      this.myErrors = [];
-      this.description = "";
-      this.title = "";
-    }
-
   }
 }
 </script>

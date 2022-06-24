@@ -46,7 +46,17 @@ export default {
           alert(data.message);
         }
       });
-    }
+    },
+
+    formSubmitted() {
+      this.myErrors = [];
+      !this.email ? this.myErrors.push("nul") : null;
+      !this.nbElecteur ? this.myErrors.push("elec") : null;
+      !this.password ? this.myErrors.push("pass") : null;
+      if (!this.myErrors.length) {
+        this.login();
+      }
+    },
   }
 }
 </script>
