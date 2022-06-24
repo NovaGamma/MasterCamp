@@ -25,7 +25,7 @@ exports.vote = (req, res) => {
             console.log(user._id);
             console.log(req.body);
             if(user.commune == req.body.communeID){
-                Candidat.findOne({'_id':req.body.candidatID,'communeID':user.communeID})
+                Candidat.findOne({'_id':req.body.candidatID,'communeID':user.commune})
                 .then(candidat => {
                 if(!candidat){
                     return res.status(404).send({
