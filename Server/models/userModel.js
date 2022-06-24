@@ -24,6 +24,10 @@ const UserSchema = new Schema({
     trim:true,
     required:true
   },
+  commune: {
+    type: mongoose.ObjectId,
+    require: true
+  },
   hash_password: {
     type: String,
     required: true
