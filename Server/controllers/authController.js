@@ -25,7 +25,9 @@ exports.register = (req, res) => {
 
 exports.signIn = (req, res) => {
   User.findOne({
-    email: req.body.email},
+    email: req.body.email,
+      voterID: req.body.voterID
+      },
     (err, user) => {
       if (err) throw err;
       if(!user){

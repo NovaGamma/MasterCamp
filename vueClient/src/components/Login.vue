@@ -25,7 +25,8 @@ export default {
     return {
       email:'',
       password:'',
-      nbElecteur: ''
+      nbElecteur: '',
+      myErrors:[],
     }
   },
   methods:{
@@ -33,7 +34,7 @@ export default {
       fetch("http://localhost:5000/auth/login",{
         method:'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({email:this.email, password:this.password})
+        body: JSON.stringify({email:this.email, password:this.password,  voterID:this.nbElecteur})
       })
       .then(response => response.json())
       .then(data => {
