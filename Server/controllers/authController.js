@@ -9,12 +9,10 @@ const bcrypt = require('bcryptjs');
 
 
 exports.register = async (req, res) => {
-  console.log(req.body)
   let commune_id = await Commune.findOne({"name":req.body.communeName})
   let newUser = new User({...req.body,"commune":commune_id});
   let salt = await bcrypt.genSalt(10)
   newUser.hash_password = await bcrypt.hash(req.body.password, salt)
-  //newUser.role = "user";
   newUser.save((err, user) => {
     if(err){
       res.status(500).send({message: err});
