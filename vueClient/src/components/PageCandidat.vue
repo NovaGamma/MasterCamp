@@ -1,4 +1,5 @@
 <template>
+  <NavBar/>
   <section class="container">
     <div v-if="!showCandidat">
       <Candidat class="ListeCandidat" v-for="(candidat,index) in list_candidats" :key="index" :candidat="candidat" v-on:click="showCandidate(index)"/>
@@ -13,9 +14,10 @@
 <script>
 import Candidat from "./Candidat";
 import ProfilCandidat from "./ProfilCandidat";
+import NavBar from "./NavBar";
 export default {
   name: "PageCandidat",
-  components: {ProfilCandidat, Candidat},
+  components: {NavBar, ProfilCandidat, Candidat},
   methods:{
     showCandidate(index){
       this.showCandidat=!this.showCandidat;
@@ -31,7 +33,7 @@ export default {
         {
           nom : "Saltbae",
           parti : "Salt",
-          programme: "SIUUUUUUUUUUUUUUU UUUUUUUUUUUUU UUUUUUUUUUUUUU UUUUUUUUUUUUU UUUUUUUUUUUUU UUUUUUUUUUUUUUU UUUUUUUUUUUUUU UUUUUUUUUUUU UUUUUUUUUUUU UUUUUUUUU",
+          programme: "SIUUUUUUUUUUUUUUU UUUUUUUUUUUUU UUUUUUUUUUUUU UUUUUUUUUUUUU UUUUUUUUUUUUU UUUUUUUUUUUUU UUUUUUUUUUUUU UUUUUUUUUUUUU UUUUUUUUUUUUU UUUUUUUUUUUUU UUUUUUUUUUUUUU UUUUUUUUUUUUU UUUUUUUUUUUUU UUUUUUUUUUUUUUU UUUUUUUUUUUUUU UUUUUUUUUUUU UUUUUUUUUUUU UUUUUUUUU",
         },
         {
           nom : "Johnny",
@@ -63,13 +65,17 @@ export default {
 
 <style>
 
+*{
+  margin: 0px;
+}
+
 .ListeCandidat{
   display: flex;
   background-color: white;
   margin: 15px;
   align-items: center;
   width: 1200px;
-  box-shadow: 4px 4px 4px 4px darkgrey;
+  box-shadow: 0px 0px 5px 5px lightgrey;
   border: none;
   word-wrap: normal;
 }
@@ -84,7 +90,6 @@ export default {
 .container{
   display: flex;
   flex-wrap: wrap;
-  background-color: azure;
   justify-content: center;
 }
 

@@ -1,4 +1,5 @@
 <template>
+
   <div class="ntm">
     <div class="NavSup">
       <img class="LogoSite" src="../assets/mmmmh.jpg">
@@ -6,9 +7,10 @@
     </div>
     <div class="nav" id="nav">
       <div v-if="!token">
-        <router-link style="padding:100px" to="/Login">Login</router-link>
-        <router-link class="route" to="/Register">Register</router-link>
-        <router-link style="padding:100px" to="/PageCandidat">Candidats</router-link>
+        <router-link style="padding:100px;" to="/PageCandidat">Candidats</router-link>
+        <router-link class="route" to="/Register">Voter</router-link>
+        <router-link style="padding:100px;" to="/Login">A propos</router-link>
+
       </div>
       <div v-else>
         <router-link v-if="user.fullName != 'Admin'" to="/AddComment">Add Comment</router-link>
@@ -18,7 +20,6 @@
       </div>
     </div>
   </div>
-    <router-view/>
 
 </template>
 
@@ -67,16 +68,16 @@ export default{
   .nav{
     display: flex;
     justify-content: center;
-    background-color: lightskyblue;
+    background-color: rgb(128,179,255);
     font-size: x-large;
     border-top: solid 1px azure;
+    color: white;
   }
 
   .route{
     border-left: solid 1px azure;
     border-right: solid 1px azure;
     padding: 20px 100px 20px 100px;
-
   }
 
   .LogoSite{
@@ -87,15 +88,16 @@ export default{
 
   .NavSup{
     display: flex;
-    background-color: lightskyblue;
+    background-color: rgb(128,179,255);
     justify-content: space-between;
+    color: white;
   }
 
   .textSup{
     display: flex;
     margin: 30px;
     font-size: xx-large;
-    color: black;
+    color: white;
     text-decoration: none;
   }
 

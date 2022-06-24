@@ -1,10 +1,12 @@
 <template>
-  <div>hello</div>
+  <NavBar/>
 </template>
 
 <script>
+import NavBar from "./NavBar";
 export default {
-  name: "ProfilElecteur"
+  name: "ProfilElecteur",
+  components: {NavBar}
 }
 </script>
 
