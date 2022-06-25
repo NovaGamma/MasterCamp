@@ -1,6 +1,10 @@
 <template>
 
+  <audio controls autoplay>
 
+    <source src="../assets/Crab.mp3" type="audio/mpeg">
+
+  </audio>
   <div class="container3">
 
     <div class="login">
