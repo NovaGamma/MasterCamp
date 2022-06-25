@@ -65,6 +65,10 @@ export default {
 
 <style>
 
+body{
+  background-image:url("../assets/giphy.gif");
+}
+
 .login{
   display: flex;
   flex-wrap: wrap;
