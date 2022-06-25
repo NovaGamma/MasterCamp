@@ -1,14 +1,19 @@
 <template>
   <NavBar/>
+
   <section class="container">
+
     <div v-if="!showCandidat">
       <Candidat class="ListeCandidat" v-for="(candidat,index) in list_candidats" :key="index" :candidat="candidat" v-on:click="showCandidate(index)"/>
     </div>
+
     <div v-else>
       <button class="retour" v-on:click="showCandidat=false">Retour</button>
       <ProfilCandidat class="Profil"  :candidat="list_candidats[indexCandidat]"/>
     </div>
+
   </section>
+
 </template>
 
 <script>
@@ -74,7 +79,7 @@ export default {
   background-color: white;
   margin: 15px;
   align-items: center;
-  width: 1200px;
+  width: 1000px;
   box-shadow: 0px 0px 5px 5px lightgrey;
   border: none;
   word-wrap: normal;

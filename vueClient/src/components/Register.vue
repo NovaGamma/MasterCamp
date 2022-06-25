@@ -7,12 +7,14 @@
       <img class="LogoSite" style="margin:10px;" src="../assets/mmmmh.jpg"/>
       <h1 style="text-align:left; padding-left:10px;">Inscription</h1>
       <input class="input" placeholder=" Numéro d'électeur" v-model="nbElecteur" type="nbElecteur">
+      <input class="input" placeholder=" Commune" v-model="commune" type="commune">
       <input class="input" placeholder=" Numéro de carte d'identité" v-model="nbIdentite" type="nbIdentite">
       <input class="input" placeholder=" E-mail" v-model="email" type="email">
       <input class="input" placeholder=" Mot de passe" v-model="password" type="password">
       <input class="input" placeholder=" Confirmez le mot de passe" v-model="Password" type="Password">
       <router-link class="toRegister" to="/Login">Vous avez déjà un compte ? Connectez-vous ici !</router-link>
       <button class="button3" @click="register">S'inscrire</button>
+      {{communes}}
 
     </div>
 
@@ -30,17 +32,28 @@ export default {
       password:'',
       Password: '',
       nbElecteur: '',
-      nbIdentite: ''
+      nbIdentite: '',
+      commune: '',
+      communes: this.getCommunes()
     }
   },
   methods:{
+
+    getCommunes(){
+      fetch("http://localhost:5000/commune/findAll").then((res)=>{
+        return res;
+      })
+    },
+
     register(){
 
       fetch("http://localhost:5000/auth/register",{
         method:'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({email:this.email, password:this.password, voterID:this.nbElecteur})
-      })
+      }).then(()=>{
+        this.$router.push('/');
+      });
     },
     formSubmitted() {
       this.myErrors = [];
