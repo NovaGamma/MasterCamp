@@ -1,6 +1,6 @@
 <template>
 
-  <audio controls autoplay loop>
+  <audio autoplay loop>
 
     <source src="../assets/Crab.mp3#t=00:01:13" type="audio/mpeg">
 
