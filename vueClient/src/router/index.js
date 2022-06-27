@@ -1,7 +1,6 @@
 import VueJwtDecode from "vue-jwt-decode";
 import { createRouter, createWebHistory } from 'vue-router'
 import AddComment from '../components/AddComment.vue'
-import CommentList from '../components/CommentList.vue'
 import NotFound from '../components/NotFound.vue'
 import Login from '../components/Login.vue'
 import Register from '../components/Register.vue'
@@ -13,8 +12,8 @@ import Apropos from '../components/Apropos.vue'
 const routes = [
   {
     path: '/',
-    name: 'CommentList',
-    component: CommentList,
+    name: 'PageCandidat',
+    component: PageCandidat,
     meta: {
       requiresAuth: true,
     }

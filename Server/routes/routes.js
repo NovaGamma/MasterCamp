@@ -19,7 +19,7 @@ module.exports = function(app) {
     .post(candidatHandlers.create); //admin
 
   app.route("/candidat/find")
-    .get(candidatHandlers.findByCommune); //login
+    .post(candidatHandlers.findByCommune); //login
 
   app.route("/candidat/findAll")
     .get(candidatHandlers.findAll); //admin

@@ -3,11 +3,7 @@ const Candidat = require('../models/candidatModel.js');
 
 exports.create = (req, res) => {
     // Create a Candidat
-    const candidat = new Candidat({
-        communeID: req.body.communeID,
-        name: req.body.name,
-        date: req.body.date
-    });
+    const candidat = new Candidat({...req.body});
     // Save a Candidat in the MongoDB
     candidat.save()
     .then(data => {

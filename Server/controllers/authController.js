@@ -9,8 +9,7 @@ const bcrypt = require('bcryptjs');
 
 
 exports.register = async (req, res) => {
-  let commune_id = await Commune.findOne({"name":req.body.communeName})
-  let newUser = new User({...req.body,"commune":commune_id});
+  let newUser = new User({...req.body});
   let salt = await bcrypt.genSalt(10)
   newUser.hash_password = await bcrypt.hash(req.body.password, salt)
   newUser.save((err, user) => {
@@ -35,7 +34,7 @@ exports.signIn = (req, res) => {
           if(!user.comparePassword(req.body.password)){
             res.status(401).json({message: 'Authentification failed. Wrong password'});
           } else {
-            res.json({token: jwt.sign({email: user.email, fullName: user.fullName, _id: user._id, role: user.role}, config.secret, {expiresIn: 86400})
+            res.json({token: jwt.sign({email: user.email, fullName: user.fullName, voterID: user.voterID, _id: user._id, communeID:user.commune}, config.secret, {expiresIn: 86400})
           });
         }
       }

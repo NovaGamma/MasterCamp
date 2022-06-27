@@ -15,17 +15,10 @@
     </div>
 
     <div class="nav" id="nav">
-
-      <div v-if="!token">
-        <router-link style="padding-right:100px;" to="/PageCandidat">Candidats</router-link>
+      <div>
+        <router-link style="padding-right:100px;" to="/">Candidats</router-link>
         <router-link class="route" to="">Voter</router-link>
         <router-link style="padding-left:100px;" to="/Apropos">A propos</router-link>
-      </div>
-
-      <div v-else>
-        <router-link v-if="user.fullName != 'Admin'" to="/AddComment">Add Comment</router-link>
-        <router-link v-else to="/Admin">Admin vue</router-link>
-        {{user.fullName}} |
         <button @click="logout">Log Out</button>
       </div>
 
@@ -63,7 +56,7 @@ export default{
     },
     logout(){
       localStorage.removeItem('jwt');
-      this.getToken()
+      this.$router.push('/Login')
     },
     getUser(){
       let decoded = VueJwtDecode.decode(localStorage.getItem('jwt'));

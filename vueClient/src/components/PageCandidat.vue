@@ -19,49 +19,47 @@
 import Candidat from "./Candidat";
 import ProfilCandidat from "./ProfilCandidat";
 import NavBar from "./NavBar";
+import VueJwtDecode from "vue-jwt-decode";
 export default {
   name: "PageCandidat",
   components: {NavBar, ProfilCandidat, Candidat},
-  methods:{
-    showCandidate(index){
-      this.showCandidat=!this.showCandidat;
-      this.indexCandidat=index;
-    }
-  },
-
   data(){
     return {
       indexCandidat: 0,
       showCandidat: false,
-      list_candidats: [
-        {
-          nom : "Saltbae",
-          parti : "Salt",
-          programme: "SIUUUUUUUUUUUUUUU UUUUUUUUUUUUU UUUUUUUUUUUUU UUUUUUUUUUUUU UUUUUUUUUUUUU UUUUUUUUUUUUU UUUUUUUUUUUUU UUUUUUUUUUUUU UUUUUUUUUUUUU UUUUUUUUUUUUU UUUUUUUUUUUUUU UUUUUUUUUUUUU UUUUUUUUUUUUU UUUUUUUUUUUUUUU UUUUUUUUUUUUUU UUUUUUUUUUUU UUUUUUUUUUUU UUUUUUUUU",
-        },
-        {
-          nom : "Johnny",
-          parti : "Salt",
-          programme: "Bae",
-        },
-        {
-          nom : "Michel",
-          parti : "Salt",
-          programme: "Bae",
-        },
-        {
-          nom : "Kylian",
-          parti : "Salt",
-          programme: "Bae",
-        },
-        {
-          nom : "Zidane",
-          parti : "Salt",
-          programme: "Bae",
-        },
-      ],
+      list_candidats: [],
     }
   },
+  async mounted(){
+    this.getUser();
+    await this.getCandidats();
+  },
+  methods:{
+    showCandidate(index){
+      this.showCandidat=!this.showCandidat;
+      this.indexCandidat=index;
+    },
+    getUser(){
+      if(localStorage.jwt == undefined) return false;
+      let decoded = VueJwtDecode.decode(localStorage.getItem('jwt'));
+      if(decoded.exp < Date.now()/1000) this.$router.push('/Login');
+      this.user = decoded;
+      console.log(this.user);
+    },
+    async getCandidats(){
+      let res = await fetch("http://127.0.0.1:5000/candidat/find",{
+        method:"POST",
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          communeID:this.user.communeID})
+      })
+      let data = await res.json();
+      this.list_candidats = data;
+      console.log(this.list_candidats);
+    }
+  },
+
+  
 }
 
 
