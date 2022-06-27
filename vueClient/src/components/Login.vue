@@ -1,21 +1,11 @@
 <template>
 
 
-<<<<<<< HEAD
-
-  <div class="container3">
-
-    <div class="login">
-
-      <img class="LogoSite" style="margin:10px;" src="../assets/mmmmh.jpg"/>
-      <h1 style="text-align:left; padding-left:10px; padding-top: 15px; padding-bottom: 10px;">Connexion</h1>
-=======
   <div class="container3">
 
     <div class="login">
       <img class="LogoSite" style="margin:10px;" src="../assets/mmmmh.jpg"/>
       <h1 style="text-align:left; padding-left:10px;">Connexion</h1>
->>>>>>> parent of 51bef75 (update)
       <input class="input" placeholder=" Numéro d'électeur" v-model="nbElecteur" type="nbElecteur">
       <input class="input" placeholder=" E-mail" v-model="email" type="email">
       <input class="input" placeholder=" Mot de passe" v-model="password" type="password">
@@ -35,12 +25,7 @@ export default {
     return {
       email:'',
       password:'',
-<<<<<<< HEAD
-      nbElecteur: '',
-      myErrors:[],
-=======
       nbElecteur: ''
->>>>>>> parent of 51bef75 (update)
     }
   },
   methods:{
@@ -75,16 +60,8 @@ export default {
   }
 }
 </script>
-<<<<<<< HEAD
-<style>
-
-body{
-  background-image:url("../assets/giphy.gif");
-}
-=======
 
 <style>
->>>>>>> parent of 51bef75 (update)
 
 .login{
   display: flex;
@@ -148,8 +125,4 @@ body{
   background-color: dodgerblue;
 }
 
-<<<<<<< HEAD
 </style>
-=======
-</style>
->>>>>>> parent of 51bef75 (update)
