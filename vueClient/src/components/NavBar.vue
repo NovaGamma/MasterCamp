@@ -1,6 +1,5 @@
 <template>
 
-<<<<<<< HEAD
 
   <audio autoplay loop>
 
@@ -8,8 +7,6 @@
 
   </audio>
 
-=======
->>>>>>> parent of 51bef75 (update)
   <div class="ntm">
 
     <div class="NavSup">
@@ -20,16 +17,9 @@
     <div class="nav" id="nav">
 
       <div v-if="!token">
-<<<<<<< HEAD
         <router-link style="padding-right:100px;" to="/PageCandidat">Candidats</router-link>
         <router-link class="route" to="">Voter</router-link>
         <router-link style="padding-left:100px;" to="/Apropos">A propos</router-link>
-=======
-        <router-link style="padding:100px;" to="/PageCandidat">Candidats</router-link>
-        <router-link class="route" to="/Register">Voter</router-link>
-        <router-link style="padding:100px;" to="/Login">A propos</router-link>
-
->>>>>>> parent of 51bef75 (update)
       </div>
 
       <div v-else>

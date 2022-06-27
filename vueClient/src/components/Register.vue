@@ -8,7 +8,7 @@
 
   <div class="container3">
 
-    <div class="login" style="top:7%;">
+    <div class="login" style="top:2%;">
 
       <img class="LogoSite" style="margin:10px;" src="../assets/mmmmh.jpg"/>
       <h1 style="text-align:left; padding-left:10px; padding-top: 15px; padding-bottom: 10px;">Inscription</h1>
@@ -40,17 +40,18 @@ export default {
       nbElecteur: '',
       nbIdentite: '',
       commune: '',
-      communes: this.getCommunes()
+      communes: []
     }
   },
+  async mounted(){
+    await this.getCommunes()
+  },
   methods:{
-
-    getCommunes(){
-      fetch("http://localhost:5000/commune/findAll").then((res)=>{
-        return res;
-      })
+    async getCommunes(){
+      let res = await fetch("http://localhost:5000/commune/findAll");
+      let communes = await res.json();
+      this.communes = communes;
     },
-
     register(){
 
       fetch("http://localhost:5000/auth/register",{
