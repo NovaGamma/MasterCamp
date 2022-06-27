@@ -1,42 +1,17 @@
 <template>
-
-  <router-view/>
-
+  <NavBar/>
 </template>
 
 <script>
+import NavBar from './components/NavBar.vue'
 
 export default{
   name: 'app',
-
+  components:{NavBar}
 }
 </script>
 
 <style>
-
-*{
-  font-family: "Arial";
-}
-
-h1{
-  font-weight: normal;
-}
-
-h2{
-  font-weight: normal;
-}
-
-h3{
-  font-weight: normal;
-}
-
-body{
-  background-color: #F2F2F2;
-
-}
-
-
-
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -50,8 +25,8 @@ body{
 }
 
 #nav a {
-  font-weight: normal;
-  color: white;
+  font-weight: bold;
+  color: #2c3e50;
   text-decoration: none;
 }
 

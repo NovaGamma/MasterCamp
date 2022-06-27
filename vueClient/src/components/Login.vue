@@ -1,20 +1,11 @@
 <template>
+2 accounts : a@test.com test
+            admin@test.com admin
 
 
-  <div class="container3">
-
-    <div class="login">
-      <img class="LogoSite" style="margin:10px;" src="../assets/mmmmh.jpg"/>
-      <h1 style="text-align:left; padding-left:10px;">Connexion</h1>
-      <input class="input" placeholder=" Numéro d'électeur" v-model="nbElecteur" type="nbElecteur">
-      <input class="input" placeholder=" E-mail" v-model="email" type="email">
-      <input class="input" placeholder=" Mot de passe" v-model="password" type="password">
-      <router-link class="toRegister" to="/Register">Vous n'avez pas de compte ? Inscrivez-vous ici !</router-link>
-      <button class="button3" @click="login">Connexion</button>
-
-    </div>
-
-  </div>
+Email : <input v-model="email" type="email">
+Password : <input v-model="password" type="password">
+<button @click="login">Login</button>
 
 </template>
 <script>
@@ -24,8 +15,7 @@ export default {
   data(){
     return {
       email:'',
-      password:'',
-      nbElecteur: ''
+      password:''
     }
   },
   methods:{
@@ -50,69 +40,3 @@ export default {
   }
 }
 </script>
-
-<style>
-
-.login{
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  width: 500px;
-  background-color: white;
-  box-shadow: 0px 0px 10px 3px darkgrey;
-  border-radius: 15px;
-  padding: 35px;
-  margin: 30px;
-  top: 15%;
-  position: absolute;
-}
-
-.input{
-  font-size: x-large;
-  border-radius: 10px;
-  border: none;
-  box-shadow: inset 0px 0px 10px 3px lightgrey;
-  padding: 10px;
-}
-
-.toRegister{
-  text-align: left;
-  padding: 10px;
-  text-decoration: none;
-}
-
-.toRegister:hover{
-  text-decoration: underline;
-}
-
-.toRegister:active{
-  color: orange;
-}
-
-.container3{
-
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.button3{
-  border: none;
-  background-color: lightskyblue;
-  height: 50px;
-  width: 300px;
-  font-size: x-large;
-  border-radius: 15px;
-  align-self: center;
-  margin-top: 15px;
-}
-
-.button3:hover{
-  background-color: deepskyblue;
-}
-
-.button3:active{
-  background-color: dodgerblue;
-}
-
-</style>
