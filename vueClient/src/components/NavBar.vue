@@ -18,7 +18,7 @@
 
       <div v-if="!token">
         <router-link style="padding-right:100px;" to="/PageCandidat">Candidats</router-link>
-        <router-link class="route" to="">Voter</router-link>
+        <router-link class="route" to="/PageVoter">Voter</router-link>
         <router-link style="padding-left:100px;" to="/Apropos">A propos</router-link>
       </div>
 

@@ -9,6 +9,7 @@ import Admin from '../components/Admin.vue'
 import PageCandidat from '../components/PageCandidat.vue'
 //import ProfilElecteur from '../components/ProfilElecteur.vue'
 import Apropos from '../components/Apropos.vue'
+import PageVoter from '../components/PageVoter.vue'
 
 const routes = [
   {
@@ -82,7 +83,15 @@ const routes = [
     meta: {
       requiresAdmin: true
     }
-  }
+  },
+  {
+    path :'/PageVoter',
+    name: 'PageVoter',
+    component: PageVoter,
+    meta: {
+      requiresAuth: false,
+    }
+  },
 ]
 
 const router = createRouter({
