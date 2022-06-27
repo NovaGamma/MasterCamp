@@ -9,8 +9,7 @@ const Schema = mongoose.Schema;
 const UserSchema = new Schema({
   fullName: {
     type: String,
-    trim: true,
-    required: true
+    trim: true
   },
   voterID: {
     type: String, //8-9 characters (digits)
