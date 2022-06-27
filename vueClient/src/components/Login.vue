@@ -1,4 +1,7 @@
 <template>
+2 accounts : a@test.com test
+            admin@test.com admin
+
 
 
   <div class="container3">
@@ -62,7 +65,6 @@ export default {
   }
 }
 </script>
-
 <style>
 
 body{

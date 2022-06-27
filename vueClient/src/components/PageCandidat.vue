@@ -1,4 +1,5 @@
 <template>
+
   <NavBar/>
 
   <section class="container">
@@ -19,10 +20,9 @@
 <script>
 import Candidat from "./Candidat";
 import ProfilCandidat from "./ProfilCandidat";
-import NavBar from "./NavBar";
 export default {
   name: "PageCandidat",
-  components: {NavBar, ProfilCandidat, Candidat},
+  components: {ProfilCandidat, Candidat},
   methods:{
     showCandidate(index){
       this.showCandidat=!this.showCandidat;
@@ -71,10 +71,6 @@ export default {
 
 <style>
 
-*{
-  margin: 0px;
-}
-
 .ListeCandidat{
   display: flex;
   background-color: white;
@@ -96,6 +92,7 @@ export default {
 .container{
   display: flex;
   flex-wrap: wrap;
+  background-color: azure;
   justify-content: center;
 }
 

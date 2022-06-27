@@ -1,6 +1,5 @@
 const Candidat = require('../models/candidatModel.js');
 // POST a Candidat
-
 exports.create = (req, res) => {
     // Create a Candidat
     const candidat = new Candidat({
@@ -48,17 +47,6 @@ exports.deleteAll = (req, res) => {
     Candidat.deleteMany()
     .then(res.send({message: "All candidats deleted successfully!"}))
     .catch(err => {
-        res.status(500).send({
-            message: err.message
-        });
-    });
-}
-
-exports.findAll = (req, res) => {
-    Candidat.find()
-    .then(candidats => {
-        res.send(candidats);
-    }).catch(err => {
         res.status(500).send({
             message: err.message
         });

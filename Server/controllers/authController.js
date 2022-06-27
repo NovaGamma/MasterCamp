@@ -1,25 +1,26 @@
 const User = require("../models/userModel");
-const Commune = require("../models/communeModel");
 
-const config = require("../config/auth.config");
+const config = require("../config/auth.config")
 
 const jwt = require('jsonwebtoken');
 
 const bcrypt = require('bcryptjs');
 
 
-exports.register = async (req, res) => {
-  let commune_id = await Commune.findOne({"name":req.body.communeName})
-  let newUser = new User({...req.body,"commune":commune_id});
-  let salt = await bcrypt.genSalt(10)
-  newUser.hash_password = await bcrypt.hash(req.body.password, salt)
-  newUser.save((err, user) => {
-    if(err){
-      res.status(500).send({message: err});
-    }
-    user.hash_password = undefined;
-    res.status(201).json(user);
-  })
+exports.register = (req, res) => {
+  let newUser = new User(req.body);
+  bcrypt.genSalt(10)
+    .then(salt => {
+      newUser.hash_password = bcrypt.hash(req.body.password, salt);
+      newUser.role = "user";
+      newUser.save((err, user) => {
+        if(err){
+          res.status(500).send({message: err});
+        }
+        user.hash_password = undefined;
+        res.status(201).json(user);
+      })
+    });
 }
 
 exports.signIn = (req, res) => {
@@ -73,42 +74,6 @@ exports.findOne = (req, res) => {
             req.body.userId
         });
     });
-};
-
-// DELETE a User
-exports.delete = (req, res) => {
-  User.findByIdAndRemove(req.body.userId)
-  .then(user => {
-      if(!user) {
-          return res.status(404).send({
-              message: "User not found with id " +
-              req.body.userId
-          });
-      }
-      res.send({message: "User deleted successfully!"});
-  }).catch(err => {
-      if(err.kind === 'ObjectId' || err.name === 'NotFound') {
-          return res.status(404).send({
-              message: "User not found with id " +
-              req.body.userId
-          });
-      }
-      return res.status(500).send({
-          message: "Could not delete User with id " +
-          req.body.userId
-      });
-  });
-}
-
-exports.findAll = (req, res) => {
-  User.find()
-  .then(users => {
-      res.send(users);
-  }).catch(err => {
-      res.status(500).send({
-          message: err.message
-      });
-  });
 };
 
 // find user by commune

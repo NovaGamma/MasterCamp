@@ -4,13 +4,12 @@
 
     <img class="CandidatPic" src="../assets/saltbae.png" >
 
-    <div class="text">
+    <div class="text"
 
       <h1 style="font-weight: bold;">{{ candidat.nom }}</h1> <br>
       <h2>Parti : {{ candidat.parti }}</h2> <br>
       <h2>Programme :</h2>
       <h3>{{ candidat.programme }} </h3>
-
 
     </div>
 

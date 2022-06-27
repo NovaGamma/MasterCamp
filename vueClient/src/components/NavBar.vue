@@ -1,5 +1,6 @@
 <template>
 
+
   <audio autoplay loop>
 
     <source src="../assets/Crab.mp3#t=00:01:13" type="audio/mpeg">
@@ -31,6 +32,7 @@
     </div>
 
   </div>
+    <router-view/>
 
 </template>
 
@@ -79,16 +81,16 @@ export default{
   .nav{
     display: flex;
     justify-content: center;
-    background-color: rgb(128,179,255);
+    background-color: lightskyblue;
     font-size: x-large;
     border-top: solid 1px azure;
-    color: white;
   }
 
   .route{
     border-left: solid 1px azure;
     border-right: solid 1px azure;
     padding: 20px 100px 20px 100px;
+
   }
 
   .LogoSite{
@@ -99,16 +101,15 @@ export default{
 
   .NavSup{
     display: flex;
-    background-color: rgb(128,179,255);
+    background-color: lightskyblue;
     justify-content: space-between;
-    color: white;
   }
 
   .textSup{
     display: flex;
     margin: 30px;
     font-size: xx-large;
-    color: white;
+    color: black;
     text-decoration: none;
   }
 
