@@ -13,38 +13,39 @@
 <script>
 import Voter from "./Voter";
 import NavBar from "./NavBar";
+import VueJwtDecode from "vue-jwt-decode";
 export default {
   name: "PageVoter",
   components: {NavBar, Voter},
-  
-
   data(){
     return {
       indexCandidat: 0,
-      list_candidats: [
-        {
-          nom : "Saltbae",
-          parti : "Salt",
-        },
-        {
-          nom : "Johnny",
-          parti : "Salt",
-        },
-        {
-          nom : "Michel",
-          parti : "Salt",
-        },
-        {
-          nom : "Kylian",
-          parti : "Salt",
-        },
-        {
-          nom : "Zidane",
-          parti : "Salt",
-        },
-      ],
+      list_candidats: [],
     }
   },
+  async mounted(){
+    this.getUser();
+    await this.getCandidats();
+  },
+  methods:{
+    getUser(){
+      if(localStorage.jwt == undefined) return false;
+      let decoded = VueJwtDecode.decode(localStorage.getItem('jwt'));
+      if(decoded.exp < Date.now()/1000) this.$router.push('/Login');
+      this.user = decoded;
+      console.log(this.user);
+    },
+    async getCandidats(){
+      let res = await fetch("http://127.0.0.1:5000/candidat/find",{
+        method:"POST",
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          communeID:this.user.communeID})
+      })
+      let data = await res.json();
+      this.list_candidats = data;
+    }
+  }
 }
 
 

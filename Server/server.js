@@ -18,7 +18,7 @@ mongoose.connect(mongoUri,{useNewUrlParser: true, useUnifiedTopology: true})
 
 
 var corsOptions = {
-  origin: "http://localhost:8080"
+  origin: ["http://localhost:8080","http://127.0.0.1:8080"]
 };
 
 const app = express();

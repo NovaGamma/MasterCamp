@@ -6,7 +6,7 @@
 
     <div class="text">
 
-      <h1 style="font-weight: bold;">{{ voter.nom }}</h1> <br>
+      <h1 style="font-weight: bold;">{{ voter.name }}</h1> <br>
       <h2>Parti : {{ voter.parti }}</h2> <br>
         
     </div>
@@ -19,17 +19,18 @@
 </template>
 
 <script>
+import VueJwtDecode from "vue-jwt-decode";
 export default {
   name: "Voter",
     methods:{
-    confirm_popup(){
-            var value = confirm('Voulez vous vraiment voter pour ce candidat ?')
-            if (value){
-                console.log("FAIRE LE FETCH A LA PLACE DE CE CONSOLE.LOG");
-                this.$router.push('/');
-                alert("Merci d'avoir voté !");
-            }
+      confirm_popup(){
+        var value = confirm('Voulez vous vraiment voter pour ce candidat ?')
+        if (value){
+          console.log("FAIRE LE FETCH A LA PLACE DE CE CONSOLE.LOG");
+          this.$router.push('/');
+          alert("Merci d'avoir voté !");
         }
+      }
     },
   props:{
     voter: {
