@@ -11,7 +11,7 @@
     <div class="login" style="top:7%;">
 
       <img class="LogoSite" style="margin:10px;" src="../assets/mmmmh.jpg"/>
-      <h1 style="text-align:left; padding-left:10px;">Inscription</h1>
+      <h1 style="text-align:left; padding-left:10px; padding-top: 15px; padding-bottom: 10px;">Inscription</h1>
       <input class="input" placeholder=" Numéro d'électeur" v-model="nbElecteur" type="nbElecteur">
       <input class="input" placeholder=" Commune" v-model="commune" type="commune">
       <input class="input" placeholder=" Numéro de carte d'identité" v-model="nbIdentite" type="nbIdentite">

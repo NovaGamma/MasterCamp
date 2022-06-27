@@ -6,7 +6,7 @@
     <div class="login">
 
       <img class="LogoSite" style="margin:10px;" src="../assets/mmmmh.jpg"/>
-      <h1 style="text-align:left; padding-left:10px; padding-top: 15px; padding-bottom: 15px;">Connexion</h1>
+      <h1 style="text-align:left; padding-left:10px; padding-top: 15px; padding-bottom: 10px;">Connexion</h1>
       <input class="input" placeholder=" Numéro d'électeur" v-model="nbElecteur" type="nbElecteur">
       <input class="input" placeholder=" E-mail" v-model="email" type="email">
       <input class="input" placeholder=" Mot de passe" v-model="password" type="password">
