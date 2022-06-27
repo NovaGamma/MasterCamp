@@ -1,4 +1,4 @@
-const Commune = require('../models/commune.model.js');
+const Commune = require('../models/communeModel.js');
 // POST a Commune
 exports.create = (req, res) => {
     // Create a Commune
@@ -24,6 +24,7 @@ exports.findAll = (req, res) => {
         });
     });
 };
+
 // FIND a Commune
 exports.findOne = (req, res) => {
     Commune.findById(req.body.communeId)

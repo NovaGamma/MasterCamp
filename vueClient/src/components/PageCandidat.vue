@@ -1,7 +1,11 @@
 <template>
+<<<<<<< HEAD
 
   <NavBar/>
 
+=======
+  <NavBar/>
+>>>>>>> parent of 51bef75 (update)
   <section class="container">
 
     <div v-if="!showCandidat">
@@ -20,9 +24,10 @@
 <script>
 import Candidat from "./Candidat";
 import ProfilCandidat from "./ProfilCandidat";
+import NavBar from "./NavBar";
 export default {
   name: "PageCandidat",
-  components: {ProfilCandidat, Candidat},
+  components: {NavBar, ProfilCandidat, Candidat},
   methods:{
     showCandidate(index){
       this.showCandidat=!this.showCandidat;
@@ -39,7 +44,10 @@ export default {
           nom : "Saltbae",
           parti : "Salt",
           programme: "SIUUUUUUUUUUUUUUU UUUUUUUUUUUUU UUUUUUUUUUUUU UUUUUUUUUUUUU UUUUUUUUUUUUU UUUUUUUUUUUUU UUUUUUUUUUUUU UUUUUUUUUUUUU UUUUUUUUUUUUU UUUUUUUUUUUUU UUUUUUUUUUUUUU UUUUUUUUUUUUU UUUUUUUUUUUUU UUUUUUUUUUUUUUU UUUUUUUUUUUUUU UUUUUUUUUUUU UUUUUUUUUUUU UUUUUUUUU",
+<<<<<<< HEAD
           membres: ["Willie","Charlie","Bobby"]
+=======
+>>>>>>> parent of 51bef75 (update)
         },
         {
           nom : "Johnny",
@@ -71,12 +79,20 @@ export default {
 
 <style>
 
+*{
+  margin: 0px;
+}
+
 .ListeCandidat{
   display: flex;
   background-color: white;
   margin: 15px;
   align-items: center;
+<<<<<<< HEAD
   width: 1000px;
+=======
+  width: 1200px;
+>>>>>>> parent of 51bef75 (update)
   box-shadow: 0px 0px 5px 5px lightgrey;
   border: none;
   word-wrap: normal;
@@ -92,7 +108,6 @@ export default {
 .container{
   display: flex;
   flex-wrap: wrap;
-  background-color: azure;
   justify-content: center;
 }
 

@@ -41,7 +41,7 @@ app.use((req, res, next) => {
 });
 
 
-require('./routes/comment.routes.js')(app);
+require('./routes/routes.js')(app);
 app.get("/", (req, res) => {
   res.json({message: "Server lives!!!"});
 });

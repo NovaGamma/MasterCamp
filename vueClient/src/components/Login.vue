@@ -1,15 +1,11 @@
 <template>
-2 accounts : a@test.com test
-            admin@test.com admin
-
 
 
   <div class="container3">
 
     <div class="login">
-
       <img class="LogoSite" style="margin:10px;" src="../assets/mmmmh.jpg"/>
-      <h1 style="text-align:left; padding-left:10px; padding-top: 15px; padding-bottom: 10px;">Connexion</h1>
+      <h1 style="text-align:left; padding-left:10px;">Connexion</h1>
       <input class="input" placeholder=" Numéro d'électeur" v-model="nbElecteur" type="nbElecteur">
       <input class="input" placeholder=" E-mail" v-model="email" type="email">
       <input class="input" placeholder=" Mot de passe" v-model="password" type="password">
@@ -29,8 +25,7 @@ export default {
     return {
       email:'',
       password:'',
-      nbElecteur: '',
-      myErrors:[],
+      nbElecteur: ''
     }
   },
   methods:{
@@ -65,11 +60,8 @@ export default {
   }
 }
 </script>
-<style>
 
-body{
-  background-image:url("../assets/giphy.gif");
-}
+<style>
 
 .login{
   display: flex;
