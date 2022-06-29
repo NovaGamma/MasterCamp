@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose"
 
 const CandidatSchema = mongoose.Schema({
   communeID : {type: mongoose.ObjectId, required: true},
@@ -8,4 +8,6 @@ const CandidatSchema = mongoose.Schema({
   parti: {type: String, required: false}
 });
 
-module.exports = mongoose.model('Candidat', CandidatSchema);
+let Candidat = mongoose.model('Candidat', CandidatSchema);
+
+export {Candidat}

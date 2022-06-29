@@ -1,8 +1,8 @@
 'use strict';
 
-const mongoose = require("mongoose");
+import mongoose from "mongoose"
 
-const bcrypt = require('bcryptjs');
+import bcrypt from "bcryptjs"
 
 const Schema = mongoose.Schema;
 
@@ -46,4 +46,6 @@ UserSchema.methods.comparePassword = function(password){
   return bcrypt.compareSync(password, this.hash_password);
 }
 
-module.exports = mongoose.model("User", UserSchema);
+let User = mongoose.model("User", UserSchema);
+
+export {User};

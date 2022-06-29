@@ -1,10 +1,10 @@
-const Vote = require('../models/voteModel.js');
-const Candidat = require('../models/candidatModel');
-const User = require("../models/userModel");
-const mongoose = require('mongoose')
+
+import {Vote} from "../models/voteModel.js"
+import {Candidat} from "../models/candidatModel.js"
+import {User} from "../models/userModel.js"
 
 // UPDATE a User
-exports.vote = (req, res) => {
+var vote = (req, res) => {
 
     // Find user and update it
     User.findOne({id_:req.body.userID})
@@ -73,7 +73,7 @@ exports.vote = (req, res) => {
 
 
 // DELETE a Vote
-exports.delete = (req, res) => {
+var remove = (req, res) => {
     Vote.findByIdAndRemove(req.body.voteId)
     .then(vote => {
         if(!vote) {
@@ -98,7 +98,7 @@ exports.delete = (req, res) => {
 }
 
 // DELETE all Votes
-exports.deleteAll = (req, res) => {
+var deleteAll = (req, res) => {
     Vote.deleteMany()
     .then(res.send({message: "All votes deleted successfully!"}))
     .catch(err => {
@@ -109,7 +109,7 @@ exports.deleteAll = (req, res) => {
 }
 
 // find votes by commune
-exports.findByCommune = (req, res) => {
+var findByCommune = (req, res) => {
     Vote.find({ communeID: req.body.communeID})
     .then(
     votes => {
@@ -121,7 +121,7 @@ exports.findByCommune = (req, res) => {
 };
 
 // find votes by candidat
-exports.findByCandidat = (req, res) => {
+var findByCandidat = (req, res) => {
     Vote.find({ candidatID: req.body.candidatID})
     .then(
     votes => {
@@ -131,3 +131,5 @@ exports.findByCandidat = (req, res) => {
         res.status(500).send("Error -> " + err)
     });
 };
+
+export {vote, remove, deleteAll, findByCommune, findByCandidat}

@@ -1,11 +1,12 @@
 'use strict';
+import * as userHandlers from '../controllers/authController.js'
+import * as communeHandlers from '../controllers/communeController.js'
+import * as candidatHandlers from '../controllers/candidatController.js'
+import * as voteHandlers from '../controllers/voteController.js'
 
-module.exports = function(app) {
-  let userHandlers = require('../controllers/authController');
-  let communeHandlers = require('../controllers/communeController');
-  let candidatHandlers = require('../controllers/candidatController')
-  let voteHandlers = require('../controllers/voteController')
 
+export function route(app) {
+  
   app.route("/commune/create")
     .post(communeHandlers.create); //admin
 
@@ -29,7 +30,7 @@ module.exports = function(app) {
    //  .get(commentsList.findByName); // update with login handler
 
   app.route("/vote/vote")
-    .post(voteHandlers.vote); //login
+    .post(userHandlers.loginRequired, voteHandlers.vote); //login
 
   app.route("/vote/findAllCommune")
     .get(voteHandlers.findByCommune); //admin
@@ -45,7 +46,7 @@ module.exports = function(app) {
     .get(userHandlers.findAll); //admin
 
   app.route("/auth/delete")
-    .post(userHandlers.delete); //admin
+    .post(userHandlers.remove); //admin
 
   // post request for user log in
   app.route("/auth/login")
