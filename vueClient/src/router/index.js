@@ -6,7 +6,7 @@ import Login from '../components/Login.vue'
 import Register from '../components/Register.vue'
 import Admin from '../components/Admin.vue'
 import PageCandidat from '../components/PageCandidat.vue'
-//import ProfilElecteur from '../components/ProfilElecteur.vue'
+import ProfilElecteur from '../components/ProfilElecteur.vue'
 import Apropos from '../components/Apropos.vue'
 import PageVoter from '../components/PageVoter.vue'
 
@@ -27,14 +27,14 @@ const routes = [
       requiresAuth: false,
     }
   },
-  /*{
+  {
     path: '/ProfilElecteur',
     name: 'Electeur',
     component: ProfilElecteur,
     meta: {
       requiresAuth: false,
     }
-  },*/
+  },
   {
     path: '/PageCandidat',
     name: 'Candidats',

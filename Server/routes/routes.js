@@ -13,7 +13,7 @@ module.exports = function(app) {
     .get(communeHandlers.findAll); //admin
 
   app.route("/commune/find")
-    .get(communeHandlers.findOne); //login
+    .post(communeHandlers.findOne); //login
 
   app.route("/candidat/create")
     .post(candidatHandlers.create); //admin
