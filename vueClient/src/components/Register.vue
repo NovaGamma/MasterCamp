@@ -69,7 +69,7 @@ export default {
           alert(res.message);
         }
         else
-          this.$router.push('/');
+          this.$router.push('/Validation');
       });
     },
     formSubmitted() {
