@@ -1,7 +1,9 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose"
 
 const CommuneSchema = mongoose.Schema({
   name : {type: String, required: true, unique: true}
 });
 
-module.exports = mongoose.model('Commune', CommuneSchema);
+let Commune = mongoose.model('Commune', CommuneSchema);
+
+export {Commune}
