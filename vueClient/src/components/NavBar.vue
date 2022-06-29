@@ -6,7 +6,7 @@
     <div class="NavSup">
       <img class="LogoSite" src="../assets/LogoSite1.png">
       <h1 style="align-self: center; margin-left: 5%;">Votons tous !</h1>
-      <h3 style="">
+      <h3>
         <router-link class="textSup" to="/ProfilElecteur">Profil d'électeur</router-link>
         <button class="logOut" @click="logout">Déconnexion</button>
       </h3>
