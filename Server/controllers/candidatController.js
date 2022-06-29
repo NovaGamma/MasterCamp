@@ -1,7 +1,7 @@
-const Candidat = require('../models/candidatModel.js');
+import {Candidat} from "../models/candidatModel.js"
 // POST a Candidat
 
-exports.create = (req, res) => {
+var create = (req, res) => {
     // Create a Candidat
     const candidat = new Candidat({...req.body});
     // Save a Candidat in the MongoDB
@@ -15,7 +15,7 @@ exports.create = (req, res) => {
     });
 };
 // DELETE a Candidat
-exports.delete = (req, res) => {
+var remove = (req, res) => {
     Candidat.findByIdAndRemove(req.body.candidatId)
     .then(candidat => {
         if(!candidat) {
@@ -40,7 +40,7 @@ exports.delete = (req, res) => {
 }
 
 // DELETE all Candidats
-exports.deleteAll = (req, res) => {
+var deleteAll = (req, res) => {
     Candidat.deleteMany()
     .then(res.send({message: "All candidats deleted successfully!"}))
     .catch(err => {
@@ -50,7 +50,7 @@ exports.deleteAll = (req, res) => {
     });
 }
 
-exports.findAll = (req, res) => {
+var findAll = (req, res) => {
     Candidat.find()
     .then(candidats => {
         res.send(candidats);
@@ -62,7 +62,7 @@ exports.findAll = (req, res) => {
 }
 
 // FIND a Candidat
-exports.findOne = (req, res) => {
+var findOne = (req, res) => {
     Candidat.findById(req.body.candidatId)
     .then(candidat => {
         if(!candidat) {
@@ -87,7 +87,7 @@ exports.findOne = (req, res) => {
 };
 
 // find candidats by commune
-exports.findByCommune = (req, res) => {
+var findByCommune = (req, res) => {
     Candidat.find({ communeID: req.body.communeID})
     .then(
     candidats => {
@@ -97,3 +97,5 @@ exports.findByCommune = (req, res) => {
         res.status(500).send("Error -> " + err)
     });
 }
+
+export {create, remove, deleteAll, findAll, findOne, findByCommune}
