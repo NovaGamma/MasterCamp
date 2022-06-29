@@ -1,12 +1,17 @@
-const express = require("express");
-const cors = require("cors");
-const mongoose = require("mongoose");
-const jwt = require("jsonwebtoken");
+import express from 'express'
+import cors from 'cors'
+import mongoose from 'mongoose'
+import jwt from 'jsonwebtoken'
+import nodemailer from 'nodemailer'
+import google from 'GoogleApis'
+const OAuth2 = google.Auth.OAuth2Client
 
+//const OAuth2_client = new OAuth2(config.clientId, config.clientSecret)
+//OAuth2_client.setCredentials( {refresh_token : config.refreshToken} )
 
 mongoose.Promise = global.Promise;
-const config = require('./config/auth.config.js')
-const mongoUri = config.mongoUri
+import {auth, mail} from './config.js'
+const mongoUri = auth.mongoUri
 
 mongoose.connect(mongoUri,{useNewUrlParser: true, useUnifiedTopology: true})
   .then(()=>{console.log("Database Connected");
@@ -18,7 +23,7 @@ mongoose.connect(mongoUri,{useNewUrlParser: true, useUnifiedTopology: true})
 
 
 var corsOptions = {
-  origin: "http://localhost:8080"
+  origin: ["http://localhost:8080","http://127.0.0.1:8080"]
 };
 
 const app = express();
@@ -29,7 +34,7 @@ app.use(express.urlencoded({extended:true}));
 
 app.use((req, res, next) => {
   if(req.headers && req.headers.authorization && req.headers.authorization.split(' ')[0] === 'JWT'){
-    jwt.verify(req.headers.authorization.split(' ')[1], config.secret, (err, decode) => {
+    jwt.verify(req.headers.authorization.split(' ')[1], auth.secret, (err, decode) => {
       if(err) req.user = undefined;
       req.user = decode;
       next();
@@ -40,8 +45,8 @@ app.use((req, res, next) => {
   }
 });
 
-
-require('./routes/routes.js')(app);
+import {route} from './routes/routes.js'
+route(app);
 app.get("/", (req, res) => {
   res.json({message: "Server lives!!!"});
 });

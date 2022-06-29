@@ -1,16 +1,15 @@
-const User = require("../models/userModel");
-const Commune = require("../models/communeModel");
+import {User} from "../models/userModel.js";
+import {Commune} from "../models/communeModel.js"
 
-const config = require("../config/auth.config");
+import {auth} from "../config.js"
 
-const jwt = require('jsonwebtoken');
+import jwt from 'jsonwebtoken'
 
-const bcrypt = require('bcryptjs');
+import bcrypt from 'bcryptjs'
 
 
-exports.register = async (req, res) => {
-  let commune_id = await Commune.findOne({"name":req.body.communeName})
-  let newUser = new User({...req.body,"commune":commune_id});
+var register = async (req, res) => {
+  let newUser = new User({...req.body});
   let salt = await bcrypt.genSalt(10)
   newUser.hash_password = await bcrypt.hash(req.body.password, salt)
   newUser.save((err, user) => {
@@ -22,7 +21,7 @@ exports.register = async (req, res) => {
   })
 }
 
-exports.signIn = (req, res) => {
+var signIn = (req, res) => {
   User.findOne({
     email: req.body.email,
       voterID: req.body.voterID
@@ -35,14 +34,14 @@ exports.signIn = (req, res) => {
           if(!user.comparePassword(req.body.password)){
             res.status(401).json({message: 'Authentification failed. Wrong password'});
           } else {
-            res.json({token: jwt.sign({email: user.email, fullName: user.fullName, _id: user._id, role: user.role}, config.secret, {expiresIn: 86400})
+            res.json({token: jwt.sign({email: user.email, fullName: user.fullName, voterID: user.voterID, _id: user._id, communeID:user.commune}, auth.secret, {expiresIn: 86400})
           });
         }
       }
     });
 }
 
-exports.loginRequired = (req, res, next) => {
+var loginRequired = (req, res, next) => {
   if(req.user){
     next()
   } else {
@@ -51,7 +50,7 @@ exports.loginRequired = (req, res, next) => {
 }
 
 // FIND a user
-exports.findOne = (req, res) => {
+var findOne = (req, res) => {
     User.findById(req.body.userId)
     .then(question => {
         if(!question) {
@@ -76,7 +75,7 @@ exports.findOne = (req, res) => {
 };
 
 // DELETE a User
-exports.delete = (req, res) => {
+var remove = (req, res) => {
   User.findByIdAndRemove(req.body.userId)
   .then(user => {
       if(!user) {
@@ -100,7 +99,7 @@ exports.delete = (req, res) => {
   });
 }
 
-exports.findAll = (req, res) => {
+var findAll = (req, res) => {
   User.find()
   .then(users => {
       res.send(users);
@@ -112,7 +111,7 @@ exports.findAll = (req, res) => {
 };
 
 // find user by commune
-exports.findByCommune = (req, res) => {
+var findByCommune = (req, res) => {
     User.find({ communeID: req.body.communeID})
     .then(
     votes => {
@@ -122,3 +121,5 @@ exports.findByCommune = (req, res) => {
         res.status(500).send("Error -> " + err)
     });
 }
+
+export {register, signIn, loginRequired, findOne, remove, findAll, findByCommune};

@@ -1,6 +1,6 @@
-const Commune = require('../models/communeModel.js');
+import {Commune} from "../models/communeModel.js"
 // POST a Commune
-exports.create = (req, res) => {
+var create = (req, res) => {
     // Create a Commune
     const commune = new Commune({ name: req.body.name });
     // Save a Commune in the MongoDB
@@ -14,7 +14,7 @@ exports.create = (req, res) => {
     });
 };
 // FETCH all Communes
-exports.findAll = (req, res) => {
+var findAll = (req, res) => {
     Commune.find()
     .then(communes => {
         res.send(communes);
@@ -26,11 +26,11 @@ exports.findAll = (req, res) => {
 };
 
 // FIND a Commune
-exports.findOne = (req, res) => {
+var findOne = (req, res) => {
     Commune.findById(req.body.communeId)
     .then(commune => {
         if(!commune) {
-            return res.status(404).send({
+            return res.status(500).send({
                 message: "Commune not found with id " +
                 req.body.communeId
             });
@@ -38,7 +38,7 @@ exports.findOne = (req, res) => {
         res.send(commune);
     }).catch(err => {
         if(err.kind === 'ObjectId') {
-            return res.status(404).send({
+            return res.status(500).send({
                 message: "Commune not found with id " +
                 req.body.communeId
             });
@@ -50,7 +50,7 @@ exports.findOne = (req, res) => {
     });
 };
 // DELETE a Commune
-exports.delete = (req, res) => {
+var remove = (req, res) => {
     Commune.findByIdAndRemove(req.body.communeId)
     .then(commune => {
         if(!commune) {
@@ -75,7 +75,7 @@ exports.delete = (req, res) => {
 }
 
 // DELETE all Communes
-exports.deleteAll = (req, res) => {
+var deleteAll = (req, res) => {
     Commune.deleteMany()
     .then(res.send({message: "All communes deleted successfully!"}))
     .catch(err => {
@@ -84,3 +84,5 @@ exports.deleteAll = (req, res) => {
         });
     });
 }
+
+export {create, findAll, findOne, remove, deleteAll}

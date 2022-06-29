@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "node server.js"
   },
@@ -14,9 +15,11 @@
     "chai": "^4.3.6",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "googleapis": "^104.0.0",
     "jsonwebtoken": "^8.5.1",
     "mocha": "^10.0.0",
     "mongoose": "^6.0.13",
+    "nodemailer": "^6.7.5",
     "sinon": "^14.0.0"
   }
 }

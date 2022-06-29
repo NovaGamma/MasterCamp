@@ -5,7 +5,7 @@
       <img class="CandidatPic" src="../assets/saltbae.png" >
 
       <div class="Headline">
-        <h1 style="font-size: xxx-large; font-weight: bold;">{{ candidat.nom }}</h1>
+        <h1 style="font-size: xxx-large; font-weight: bold;">{{ candidat.name }}</h1>
         <h3>Parti : {{ candidat.parti }}</h3>
       </div>
       <img class="LogoParti" src="../assets/stonks.png" >
@@ -13,18 +13,8 @@
     </div>
 
     <div class="Infos">
-<<<<<<< HEAD
       <h3 class="SousTitre">Programme :<br><br></h3>
-      <p>{{ candidat.programme }}</p>
-      <br><br>
-      <h3 class="SousTitre">Membres du parti : <br><br></h3>
-      <h3> <span v-for="membre in candidat.membres" :key="membre">- {{membre}}<br></span></h3>
-=======
-      <h3 class="Programme">Programme : {{ candidat.programme }} </h3>
-      <br>
-      <h3>Membres du parti : </h3>
-      <h3 >{{candidat.liste}}</h3>
->>>>>>> parent of 51bef75 (update)
+      <p>{{ candidat.description }}</p>
     </div>
 
   </section>

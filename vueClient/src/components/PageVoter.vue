@@ -2,13 +2,8 @@
   <NavBar/>
   <section class="container">
 
-    <div v-if="!showCandidat">
-      <Candidat class="ListeCandidat" v-for="(candidat,index) in list_candidats" :key="index" :candidat="candidat" v-on:click="showCandidate(index)"/>
-    </div>
-
-    <div v-else>
-      <button class="retour" v-on:click="showCandidat=false">Retour</button>
-      <ProfilCandidat class="Profil"  :candidat="list_candidats[indexCandidat]"/>
+    <div>
+      <Voter class="ListeCandidatVote" v-for="(voter,index) in list_candidats" :key="index" :voter="voter"/>
     </div>
 
   </section>
@@ -16,17 +11,15 @@
 </template>
 
 <script>
-import Candidat from "./Candidat";
-import ProfilCandidat from "./ProfilCandidat";
+import Voter from "./Voter";
 import NavBar from "./NavBar";
 import VueJwtDecode from "vue-jwt-decode";
 export default {
-  name: "PageCandidat",
-  components: {NavBar, ProfilCandidat, Candidat},
+  name: "PageVoter",
+  components: {NavBar, Voter},
   data(){
     return {
       indexCandidat: 0,
-      showCandidat: false,
       list_candidats: [],
     }
   },
@@ -35,10 +28,6 @@ export default {
     await this.getCandidats();
   },
   methods:{
-    showCandidate(index){
-      this.showCandidat=!this.showCandidat;
-      this.indexCandidat=index;
-    },
     getUser(){
       if(localStorage.jwt == undefined) return false;
       let decoded = VueJwtDecode.decode(localStorage.getItem('jwt'));
@@ -55,11 +44,18 @@ export default {
       })
       let data = await res.json();
       this.list_candidats = data;
-      console.log(this.list_candidats);
-    }
-  },
+    },
+    async vote(){
+      let res = await fetch("http://127.0.0.1:5000/vote/vote",{
+        method:"POST",
+        headers: {'Content-Type': 'application/json',
+                  'Authorization': 'JWT ' + localStorage.jwt},
+        body: JSON.stringify({
 
-  
+        })        
+      })
+    }
+  }
 }
 
 
@@ -71,7 +67,7 @@ export default {
   margin: 0px;
 }
 
-.ListeCandidat{
+.ListeCandidatVote{
   display: flex;
   background-color: white;
   margin: 15px;
@@ -95,34 +91,5 @@ export default {
   justify-content: center;
 }
 
-.ListeCandidat:hover{
-  background-color: lightgrey;
-}
-
-.ListeCandidat:active{
-  background-color: grey;
-}
-
-.retour{
-  margin: 10px;
-  display: flex;
-  border: solid whitesmoke;
-  width: 100px;
-  height: 30px;
-  justify-content: center;
-  font-size: large;
-  background-color: white;
-  box-shadow: 4px 4px 4px darkgrey;
-}
-
-.retour:hover{
-  background-color: lightgrey;
-  border: solid lightgrey;
-}
-
-.retour:active{
-  background-color: darkgrey;
-  border: solid darkgrey;
-}
 
 </style>
