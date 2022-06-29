@@ -1,25 +1,25 @@
 <template>
 
 
-  <audio autoplay loop>
-
-    <source src="../assets/Crab.mp3#t=00:01:13" type="audio/mpeg">
-
-  </audio>
-
   <div class="ntm">
 
     <div class="NavSup">
-      <img class="LogoSite" src="../assets/mmmmh.jpg">
-      <h3><router-link class="textSup" to="/ProfilElecteur">Profil d'électeur</router-link></h3>
+      <img class="LogoSite" src="../assets/LogoSite1.png">
+      <h1 style="align-self: center; margin-left: 5%;">Votons tous !</h1>
+      <h3 style="">
+        <router-link class="textSup" to="/ProfilElecteur">Profil d'électeur</router-link>
+        <button class="logOut" @click="logout">Déconnexion</button>
+      </h3>
+
     </div>
 
     <div class="nav" id="nav">
+
       <div>
         <router-link style="padding-right:100px;" to="/">Candidats</router-link>
         <router-link class="route" to="/PageVoter">Voter</router-link>
         <router-link style="padding-left:100px;" to="/Apropos">A propos</router-link>
-        <button @click="logout">Log Out</button>
+
       </div>
 
     </div>
@@ -70,6 +70,24 @@ export default{
 
 <style>
 
+  .logOut{
+
+    justify-content: center;
+    font-size: x-large;
+    border:none;
+    border-radius: 6px;
+    background-color: rgb(128,179,255);
+    color:white;
+  }
+
+  .logOut:hover{
+    background-color: rgb(23, 104, 241);
+  }
+
+  .logOut:active{
+    background-color: rgb(0, 60, 255);
+  }
+
   .nav{
     display: flex;
     justify-content: center;
@@ -82,13 +100,15 @@ export default{
   .route{
     border-left: solid 1px azure;
     border-right: solid 1px azure;
-    padding: 20px 100px 20px 100px;
+
+    padding: 20px 100px 21px 100px;
   }
 
   .LogoSite{
     width: 150px;
     display: flex;
-    margin: 30px;
+    margin-left: 30px;
+    margin-right: 30px;
   }
 
   .NavSup{
@@ -104,6 +124,7 @@ export default{
     font-size: xx-large;
     color: white;
     text-decoration: none;
+    align-self: center;
   }
 
   .textSup:active{
@@ -116,7 +137,7 @@ export default{
     position: sticky;
     top: 0;
     flex-direction: column;
-    box-shadow: 5px 5px 5px darkgrey;
+    box-shadow: 0px 5px 5px darkgrey;
   }
 
 

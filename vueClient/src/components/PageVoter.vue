@@ -2,7 +2,7 @@
   <NavBar/>
   <section class="container">
 
-    <div>
+    <div class="flex">
       <Voter class="ListeCandidatVote" v-for="(voter,index) in list_candidats" :key="index" :voter="voter"/>
     </div>
 
@@ -62,7 +62,6 @@ export default {
   background-color: white;
   margin: 15px;
   align-items: center;
-  width: 1200px;
   box-shadow: 0px 0px 5px 5px lightgrey;
   border: none;
   word-wrap: normal;

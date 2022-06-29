@@ -35,7 +35,7 @@ export default {
 .Apropos{
   align-self: center;
   background-color: white;
-  width: 1000px;
+  width: 60%;
   height: 700px;
   margin: 20px;
   box-shadow: 0px 0px 7px 5px lightgrey;
