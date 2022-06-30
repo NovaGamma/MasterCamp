@@ -38,8 +38,9 @@ const UserSchema = new Schema({
   hasVoted: {
     type: Boolean,
     default: false
-  }
-
+  },
+  validated: {type: Boolean, default: false},
+  code:{type: String}
 });
 
 UserSchema.methods.comparePassword = function(password){

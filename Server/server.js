@@ -2,12 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import mongoose from 'mongoose'
 import jwt from 'jsonwebtoken'
-import nodemailer from 'nodemailer'
-import google from 'GoogleApis'
-const OAuth2 = google.Auth.OAuth2Client
 
-//const OAuth2_client = new OAuth2(config.clientId, config.clientSecret)
-//OAuth2_client.setCredentials( {refresh_token : config.refreshToken} )
 
 mongoose.Promise = global.Promise;
 import {auth, mail} from './config.js'

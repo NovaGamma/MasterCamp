@@ -1,6 +1,5 @@
 import {User} from "../models/userModel.js";
-import {Commune} from "../models/communeModel.js"
-
+import {send_mail, get_html_validation} from "./mailController.js"
 import {auth} from "../config.js"
 
 import jwt from 'jsonwebtoken'
@@ -14,27 +13,47 @@ var register = async (req, res) => {
   newUser.hash_password = await bcrypt.hash(req.body.password, salt)
   newUser.save((err, user) => {
     if(err){
-      res.status(500).send({message: err});
+      return res.status(500).send({message: err});
     }
     user.hash_password = undefined;
-    res.status(201).json(user);
+    return res.status(201).json(user);
+  })
+}
+
+var validate = (req, res) => {
+  User.findOne({
+    email: req.body.email,
+    voterID: req.body.voterID
+  })
+  .then((user)=> {
+    if(!user){
+      return res.status(500).json({message: 'Error, user not found'})
+    }
+    if(user.validate){
+      return res.status(500).json({message: 'Error, account already activated'})
+    }
+    user.validate = true;
+    user.save();
+    let html = get_html_validation(user)
+    send_mail(user, "Validation compte Votons Tous", html)
+    return res.status(200)
   })
 }
 
 var signIn = (req, res) => {
   User.findOne({
     email: req.body.email,
-      voterID: req.body.voterID
+    voterID: req.body.voterID
       },
     (err, user) => {
       if (err) throw err;
       if(!user){
-        res.status(401).json({message: 'Authentification failed. User not found'});
+        return res.status(401).json({message: 'Authentification failed. User not found'});
       } else if (user){
           if(!user.comparePassword(req.body.password)){
-            res.status(401).json({message: 'Authentification failed. Wrong password'});
+            return res.status(401).json({message: 'Authentification failed. Wrong password'});
           } else {
-            res.json({token: jwt.sign({email: user.email, fullName: user.fullName, voterID: user.voterID, _id: user._id, communeID:user.commune}, auth.secret, {expiresIn: 86400})
+            return res.json({token: jwt.sign({email: user.email, fullName: user.fullName, voterID: user.voterID, _id: user._id, communeID:user.commune}, auth.secret, {expiresIn: 86400})
           });
         }
       }
@@ -54,7 +73,7 @@ var findOne = (req, res) => {
     User.findById(req.body.userId)
     .then(question => {
         if(!question) {
-            return res.status(404).send({
+            return res.status(500).send({
                 message: "User not found with id " +
                 req.body.userId
             });
@@ -62,7 +81,7 @@ var findOne = (req, res) => {
         res.send(question);
     }).catch(err => {
         if(err.kind === 'ObjectId') {
-            return res.status(404).send({
+            return res.status(500).send({
                 message: "User not found with id " +
                 req.body.userId
             });
@@ -79,7 +98,7 @@ var remove = (req, res) => {
   User.findByIdAndRemove(req.body.userId)
   .then(user => {
       if(!user) {
-          return res.status(404).send({
+          return res.status(500).send({
               message: "User not found with id " +
               req.body.userId
           });
@@ -87,7 +106,7 @@ var remove = (req, res) => {
       res.send({message: "User deleted successfully!"});
   }).catch(err => {
       if(err.kind === 'ObjectId' || err.name === 'NotFound') {
-          return res.status(404).send({
+          return res.status(500).send({
               message: "User not found with id " +
               req.body.userId
           });
@@ -122,4 +141,4 @@ var findByCommune = (req, res) => {
     });
 }
 
-export {register, signIn, loginRequired, findOne, remove, findAll, findByCommune};
+export {register, signIn, loginRequired, findOne, remove, findAll, findByCommune, validate};
