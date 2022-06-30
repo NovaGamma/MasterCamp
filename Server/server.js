@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken'
 
 
 mongoose.Promise = global.Promise;
-import {auth, mail} from './config.js'
+import {auth} from './config.js'
 const mongoUri = auth.mongoUri
 
 mongoose.connect(mongoUri,{useNewUrlParser: true, useUnifiedTopology: true})

@@ -29,10 +29,10 @@ var validate = (req, res) => {
     if(!user){
       return res.status(500).json({message: 'Error, user not found'})
     }
-    if(user.validate){
+    if(user.validated){
       return res.status(500).json({message: 'Error, account already activated'})
     }
-    user.validate = true;
+    user.validated = true;
     user.save();
     let html = get_html_validation(user)
     send_mail(user, "Validation compte Votons Tous", html)

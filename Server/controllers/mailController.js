@@ -1,9 +1,11 @@
 import nodemailer from 'nodemailer'
 import google from 'GoogleApis'
 const OAuth2 = google.Auth.OAuth2Client
+import {mail} from '../config.js'
 
-const OAuth2_client = new OAuth2(config.clientId, config.clientSecret)
-OAuth2_client.setCredentials({refresh_token : config.refreshToken})
+
+const OAuth2_client = new OAuth2(mail.clientId, mail.clientSecret)
+OAuth2_client.setCredentials({refresh_token : mail.refreshToken})
 
 var send_mail = (user, subject, html) => {
   const accessToken = OAuth2_client.getAccessToken();
@@ -12,10 +14,10 @@ var send_mail = (user, subject, html) => {
     service: 'gmail',
     auth: {
       type: 'OAuth2',
-      user: config.user,
-      clientId: config.clientId,
-      clientSecret: config.clientSecret,
-      refreshToken: config.refreshToken,
+      user: mail.user,
+      clientId: mail.clientId,
+      clientSecret: mail.clientSecret,
+      refreshToken: mail.refreshToken,
       accessToken: accessToken
     }
   })
@@ -38,17 +40,17 @@ var send_mail = (user, subject, html) => {
 }
 
 var get_html_vote = (user) => {
-    return `Bonjour ${user.fullName},
-        Pour voter veuillez utiliser ce code :
+    return `Bonjour ${user.fullName},<br>
+        Pour voter veuillez utiliser ce code :<br>
         <b>${user.code}</b>
     `
 }
 
 var get_html_validation = (user) => {
-    return `Bonjour ${user.fullName},
-        Votre compte Votons-Tous a été activé par votre mairie.
-        Vous pouvez désormais vous connecter sur le site en utilisant les identifiants renseignés durant l'inscription.
-
+    return `Bonjour ${user.fullName},<br>
+        Votre compte Votons-Tous a été activé par votre mairie.<br>
+        Vous pouvez désormais vous connecter sur le site en utilisant les identifiants renseignés durant l'inscription.<br>
+        <br>
         Toute l'équipe de Votons-Tous
     `
 }
