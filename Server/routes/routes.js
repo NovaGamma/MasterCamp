@@ -42,6 +42,9 @@ export function route(app) {
   app.route("/auth/register")
    .post(userHandlers.register);
 
+  app.route("/auth/validate")
+    .post(userHandlers.validate);
+
   app.route("/auth/findAll")
     .get(userHandlers.findAll); //admin
 

@@ -54,7 +54,7 @@ var remove = (req, res) => {
     Commune.findByIdAndRemove(req.body.communeId)
     .then(commune => {
         if(!commune) {
-            return res.status(404).send({
+            return res.status(500).send({
                 message: "Commune not found with id " +
                 req.body.communeId
             });
@@ -62,7 +62,7 @@ var remove = (req, res) => {
         res.send({message: "Commune deleted successfully!"});
     }).catch(err => {
         if(err.kind === 'ObjectId' || err.name === 'NotFound') {
-            return res.status(404).send({
+            return res.status(500).send({
                 message: "Commune not found with id " +
                 req.body.communeId
             });

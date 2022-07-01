@@ -69,7 +69,15 @@ export default {
           alert(res.message);
         }
         else
-          this.$router.push('/');
+          fetch("http://localhost:5000/auth/validate",{
+            method:'POST',
+            headers: {'Content-type': 'application/json'},
+            body: JSON.stringify({
+              email: this.email,
+              voterID: this.nbElecteur
+            })
+          })
+          this.$router.push('/Validation');
       });
     },
     formSubmitted() {
