@@ -1,17 +1,11 @@
 <template>
 
-  <audio autoplay loop>
-
-    <source src="../assets/Crab.mp3#t=00:01:13" type="audio/mpeg">
-
-  </audio>
-
   <div class="container3">
 
     <div class="login" style="top:2%;">
 
-      <img class="LogoSite" style="margin:10px;" src="../assets/mmmmh.jpg"/>
-      <h1 style="text-align:left; padding-left:10px; padding-top: 15px; padding-bottom: 10px;">Inscription</h1>
+      <img class="LogoSite" style="margin:10px;" src="../assets/LogoSite2.png"/>
+      <h1 style="text-align:left; padding-left:10px; padding-top: 15px; padding-bottom: 10px; margin-bottom: 20px;">Inscription</h1>
       <input class="input" placeholder=" Prénom" v-model="surname">
       <input class="input" placeholder=" Nom" v-model="name">
       <input class="input" placeholder=" Numéro d'électeur" v-model="nbElecteur" type="nbElecteur">
@@ -25,7 +19,6 @@
       <input class="input" placeholder=" Confirmez le mot de passe" v-model="Password" type="Password">
       <router-link class="toRegister" to="/Login">Vous avez déjà un compte ? Connectez-vous ici !</router-link>
       <button class="button3" @click="register">S'inscrire</button>
-      {{communes}}
 
     </div>
 
@@ -76,7 +69,15 @@ export default {
           alert(res.message);
         }
         else
-          this.$router.push('/');
+          fetch("http://localhost:5000/auth/validate",{
+            method:'POST',
+            headers: {'Content-type': 'application/json'},
+            body: JSON.stringify({
+              email: this.email,
+              voterID: this.nbElecteur
+            })
+          })
+          this.$router.push('/Validation');
       });
     },
     formSubmitted() {
@@ -98,3 +99,26 @@ export default {
   }
 }
 </script>
+
+<style>
+
+.select{
+  font-size: x-large;
+  border-radius: 10px;
+  border: none;
+  box-shadow: inset 0px 0px 10px 3px lightgrey;
+  margin: 10px;
+  width: 94%;
+  height: 50px;
+  color: grey;
+}
+
+.select:hover{
+  background-color: #eeeeee;
+}
+
+.select:active{
+  background-color: lightgrey;
+}
+
+</style>

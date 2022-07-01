@@ -1,8 +1,10 @@
 <template>
+
   <NavBar/>
+
   <section class="container">
 
-    <div v-if="!showCandidat">
+    <div class="flex" v-if="!showCandidat">
       <Candidat class="ListeCandidat" v-for="(candidat,index) in list_candidats" :key="index" :candidat="candidat" v-on:click="showCandidate(index)"/>
     </div>
 
@@ -58,8 +60,6 @@ export default {
       console.log(this.list_candidats);
     }
   },
-
-  
 }
 
 
@@ -71,12 +71,15 @@ export default {
   margin: 0px;
 }
 
+.flex{
+  width: 55%;
+}
+
 .ListeCandidat{
   display: flex;
   background-color: white;
   margin: 15px;
   align-items: center;
-  width: 1200px;
   box-shadow: 0px 0px 5px 5px lightgrey;
   border: none;
   word-wrap: normal;
@@ -87,12 +90,14 @@ export default {
   background-color: white;
   justify-content: center;
   margin: 20px;
+
 }
 
 .container{
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+
 }
 
 .ListeCandidat:hover{
@@ -104,7 +109,8 @@ export default {
 }
 
 .retour{
-  margin: 10px;
+  margin-top: 15px;
+  margin-left: 20%;
   display: flex;
   border: solid whitesmoke;
   width: 100px;

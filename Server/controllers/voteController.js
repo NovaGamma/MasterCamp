@@ -2,82 +2,90 @@
 import {Vote} from "../models/voteModel.js"
 import {Candidat} from "../models/candidatModel.js"
 import {User} from "../models/userModel.js"
+import { send_mail, get_html_vote } from "./mailController.js";
+
 
 // UPDATE a User
-var vote = (req, res) => {
-
+var vote = async (req, res) => {
     // Find user and update it
-    User.findOne({id_:req.body.userID})
-    .then(user => {
-        if(!user) {
-            return res.status(404).send({
-                message: "User not found with id " +
-                req.body.userId
-            });
-        }
-        else if(user.hasVoted){
-            return res.status(404).send({
-                message:"User has already voted"
-            })
-        }
-        else {
-            // Create a Vote
-            console.log(user._id);
-            console.log(req.body);
-            if(user.commune == req.body.communeID){
-                Candidat.findOne({'_id':req.body.candidatID,'communeID':user.commune})
-                .then(candidat => {
-                if(!candidat){
-                    return res.status(404).send({
-                        message: "Candidat not found in commune"
-                    });
-                }
-                console.log(candidat._id);
-                const vote = new Vote({
-                    "candidatID": candidat._id,
-                    "communeID": candidat.communeID
-                });
-                // Save a Vote in the MongoDB
-                user.hasVoted = true;
-                //user.save()
-                vote.save()
-                .then(data => {
-                    res.send(data);
-                }).catch(err => {
-                    res.status(500).send({
-                        message: err.message
-                    });
-                });
-                });
-            }
-            else{
-                return res.status(404).send({
-                    message: "Send communeID different from user communeID"
-                });
-            }
-        }
-    }).catch(err => {
-        console.log(err);
-        if(err.kind === 'ObjectId') {
-            return res.status(404).send({
-                message: "User not found with id " +
-                req.body.userId
-            });
-        }
+    let user = await User.findOne({'_id':req.user._id})
+    if(user.hasVoted){
         return res.status(500).send({
-            message: "Error updating user with id " +
-            req.body.userId
-        });
-    });
+            message:"User has already voted"
+        })
+    }
+    else if(user.code != req.body.code){
+        return res.status(500).send({
+            message: "Provided code is wrong"
+        })
+    }
+    else {
+        // Create a Vote
+        if(user.commune == req.body.communeID){
+            Candidat.findOne({'_id':req.body.candidatID,'communeID':user.commune})
+            .then(candidat => {
+            if(!candidat){
+                return res.status(500).send({
+                    message: "Candidat not found in commune"
+                });
+            }
+            console.log(candidat._id);
+            const vote = new Vote({
+                "candidatID": candidat._id,
+                "communeID": candidat.communeID
+            });
+            // Save a Vote in the MongoDB
+            user.hasVoted = true;
+            user.save()
+            vote.save()
+            .then(data => {
+                res.send(data);
+            }).catch(err => {
+                res.status(500).send({
+                    message: err.message
+                });
+            });
+            });
+        }
+        else{
+            return res.status(500).send({
+                message: "Send communeID different from user communeID"
+            });
+        }
+    }
 };
 
+
+var vote_code = async (req, res) => {
+    let user = await User.findOne({'_id':req.user._id})
+    console.log(user);
+    if(user.hasVoted){
+        return res.status(500).send({
+            message:"User has already voted"
+        })
+    }
+    else{
+        //generate code for vote
+        let code = []
+        for(let i = 0;i<8;i++){
+            code[i] = Math.floor(Math.random() * 9)
+        }
+        code = code.join('')
+        user.code = code
+
+        await user.save()
+        let html = get_html_vote(user)
+        send_mail(user, "Code vote Votons Tous", html)
+        return res.status(201).send({message: "Code has been sent"})
+    }
+}
 
 // DELETE a Vote
 var remove = (req, res) => {
     Vote.findByIdAndRemove(req.body.voteId)
     .then(vote => {
         if(!vote) {
-            return res.status(404).send({
+            return res.status(500).send({
                 message: "Vote not found with id " +
                 req.body.voteId
             });
@@ -85,7 +93,7 @@ var remove = (req, res) => {
         res.send({message: "Vote deleted successfully!"});
     }).catch(err => {
         if(err.kind === 'ObjectId' || err.name === 'NotFound') {
-            return res.status(404).send({
+            return res.status(500).send({
                 message: "Vote not found with id " +
                 req.body.voteId
             });
@@ -132,4 +140,4 @@ var findByCandidat = (req, res) => {
     });
 };
 
-export {vote, remove, deleteAll, findByCommune, findByCandidat}
+export {vote, remove, deleteAll, findByCommune, findByCandidat, vote_code}

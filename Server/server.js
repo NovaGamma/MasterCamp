@@ -2,15 +2,10 @@ import express from 'express'
 import cors from 'cors'
 import mongoose from 'mongoose'
 import jwt from 'jsonwebtoken'
-import nodemailer from 'nodemailer'
-import google from 'GoogleApis'
-const OAuth2 = google.Auth.OAuth2Client
 
-//const OAuth2_client = new OAuth2(config.clientId, config.clientSecret)
-//OAuth2_client.setCredentials( {refresh_token : config.refreshToken} )
 
 mongoose.Promise = global.Promise;
-import {auth, mail} from './config.js'
+import {auth} from './config.js'
 const mongoUri = auth.mongoUri
 
 mongoose.connect(mongoUri,{useNewUrlParser: true, useUnifiedTopology: true})
@@ -23,7 +18,7 @@ mongoose.connect(mongoUri,{useNewUrlParser: true, useUnifiedTopology: true})
 
 
 var corsOptions = {
-  origin: ["http://localhost:8080","http://127.0.0.1:8080"]
+  origin: ["http://localhost:8080","http://127.0.0.1:8080", "http://localhost:8081"]
 };
 
 const app = express();

@@ -1,7 +1,7 @@
 import mongoose from "mongoose"
 
 const VoteSchema = mongoose.Schema({
-  candidatID : {type: mongoose.ObjectId, required:true, unique:true},
+  candidatID : {type: mongoose.ObjectId, required:true},
   communeID : {type: mongoose.ObjectId, required: true}
 });
 

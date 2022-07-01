@@ -2,7 +2,7 @@
 
   <div>
 
-    <img class="CandidatPic" src="../assets/saltbae.png" >
+    <img class="CandidatPic" src="../assets/HolderCandidat.png" >
 
     <div class="text">
 
@@ -36,7 +36,7 @@ export default {
 
 .CandidatPic{
   width: 100px;
-  margin: 10px;
+  margin: 20px;
 }
 
 .text{

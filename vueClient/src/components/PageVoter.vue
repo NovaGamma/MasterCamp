@@ -2,7 +2,7 @@
   <NavBar/>
   <section class="container">
 
-    <div>
+    <div class="flex">
       <Voter class="ListeCandidatVote" v-for="(voter,index) in list_candidats" :key="index" :voter="voter"/>
     </div>
 
@@ -44,16 +44,6 @@ export default {
       })
       let data = await res.json();
       this.list_candidats = data;
-    },
-    async vote(){
-      let res = await fetch("http://127.0.0.1:5000/vote/vote",{
-        method:"POST",
-        headers: {'Content-Type': 'application/json',
-                  'Authorization': 'JWT ' + localStorage.jwt},
-        body: JSON.stringify({
-
-        })        
-      })
     }
   }
 }
@@ -72,7 +62,6 @@ export default {
   background-color: white;
   margin: 15px;
   align-items: center;
-  width: 1200px;
   box-shadow: 0px 0px 5px 5px lightgrey;
   border: none;
   word-wrap: normal;

@@ -4,8 +4,9 @@
   <div class="container3">
 
     <div class="login">
-      <img class="LogoSite" style="margin:10px;" src="../assets/mmmmh.jpg"/>
-      <h1 style="text-align:left; padding-left:10px;">Connexion</h1>
+
+      <img class="LogoSite" style="margin:10px;" src="../assets/LogoSite2.png"/>
+      <h1 style="text-align:left; padding-left:10px; margin-bottom:20px;">Connexion</h1>
       <input class="input" placeholder=" Numéro d'électeur" v-model="nbElecteur" type="nbElecteur">
       <input class="input" placeholder=" E-mail" v-model="email" type="email">
       <input class="input" placeholder=" Mot de passe" v-model="password" type="password">
@@ -70,13 +71,13 @@ export default {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  width: 500px;
+  width: 35%;
   background-color: white;
   box-shadow: 0px 0px 10px 3px darkgrey;
   border-radius: 15px;
   padding: 35px;
   margin: 30px;
-  top: 15%;
+  top: 7%;
   position: absolute;
 }
 
@@ -86,6 +87,7 @@ export default {
   border: none;
   box-shadow: inset 0px 0px 10px 3px lightgrey;
   padding: 10px;
+  width: 90%;
 }
 
 .toRegister{
@@ -103,7 +105,6 @@ export default {
 }
 
 .container3{
-
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -113,7 +114,7 @@ export default {
   border: none;
   background-color: lightskyblue;
   height: 50px;
-  width: 300px;
+  width: 65%;
   font-size: x-large;
   border-radius: 15px;
   align-self: center;

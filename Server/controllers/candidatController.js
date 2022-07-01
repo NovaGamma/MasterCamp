@@ -19,7 +19,7 @@ var remove = (req, res) => {
     Candidat.findByIdAndRemove(req.body.candidatId)
     .then(candidat => {
         if(!candidat) {
-            return res.status(404).send({
+            return res.status(500).send({
                 message: "Candidat not found with id " +
                 req.body.candidatId
             });
@@ -27,7 +27,7 @@ var remove = (req, res) => {
         res.send({message: "Candidat deleted successfully!"});
     }).catch(err => {
         if(err.kind === 'ObjectId' || err.name === 'NotFound') {
-            return res.status(404).send({
+            return res.status(500).send({
                 message: "Candidat not found with id " +
                 req.body.candidatId
             });
@@ -66,7 +66,7 @@ var findOne = (req, res) => {
     Candidat.findById(req.body.candidatId)
     .then(candidat => {
         if(!candidat) {
-            return res.status(404).send({
+            return res.status(500).send({
                 message: "Candidat not found with id " +
                 req.body.candidatId
             });
@@ -74,7 +74,7 @@ var findOne = (req, res) => {
         res.send(candidat);
     }).catch(err => {
         if(err.kind === 'ObjectId') {
-            return res.status(404).send({
+            return res.status(500).send({
                 message: "Candidat not found with id " +
                 req.body.candidatId
             });

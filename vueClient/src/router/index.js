@@ -9,6 +9,7 @@ import PageCandidat from '../components/PageCandidat.vue'
 import ProfilElecteur from '../components/ProfilElecteur.vue'
 import Apropos from '../components/Apropos.vue'
 import PageVoter from '../components/PageVoter.vue'
+import Validation from '../components/Validation.vue'
 
 const routes = [
   {
@@ -17,6 +18,14 @@ const routes = [
     component: PageCandidat,
     meta: {
       requiresAuth: true,
+    }
+  },
+  {
+    path: '/Validation',
+    name: 'Validation',
+    component: Validation,
+    meta: {
+      requiresAuth: false,
     }
   },
   {

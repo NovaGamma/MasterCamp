@@ -2,14 +2,14 @@
   <NavBar/>
   <section class="container4">
 
-    <div class="Profile">
-      <h1 class="title">Mon profil electeur</h1>
+    <div class="ProfilElecteur">
+      <h1 class="title">Mon profil électeur</h1>
      
-      <h3 class="textPropos">First name : {{user.fullName.split(' ')[0]}}</h3> 
-      <h3 class="textPropos">Last name  : {{user.fullName.split(' ')[1]}}</h3> 
-      <h3 class="textPropos">Vote ID    : {{user.voterID}}</h3>
-      <h3 class="textPropos">Email      : {{user.email}}</h3>
-      <h3 class="textPropos">Commune    : {{commune.name}}</h3>
+      <h3 class="textProposElecteur">Prénom : {{user.fullName.split(' ')[0]}}</h3> <br>
+      <h3 class="textProposElecteur">Nom  : {{user.fullName.split(' ')[1]}}</h3> <br>
+      <h3 class="textProposElecteur">Numéro d'électeur    : {{user.voterID}}</h3> <br>
+      <h3 class="textProposElecteur">E-mail      : {{user.email}}</h3><br>
+      <h3 class="textProposElecteur">Commune    : {{commune.name}}</h3>
     </div>
 
   </section>
@@ -60,18 +60,17 @@ export default {
 </script>
 
 <style scoped>
-  .container4{
+
+.container4{
   display: flex;
   flex-wrap: wrap;
 
 }
 
-.Profile{
-  align-self: center;
+.ProfilElecteur{
   background-color: white;
-  width: 1000px;
+  width: 60%;
   height: 700px;
-  margin: 20px;
   box-shadow: 0px 0px 7px 5px lightgrey;
 }
 
@@ -79,10 +78,12 @@ export default {
   font-weight: bold;
   font-size: xx-large;
   padding-bottom: 100px;
-  padding-top: 20px;
+  padding-top: 30px;
 }
 
-.textPropos{
-
+.textProposElecteur{
+  text-align: justify;
+  margin-left: 10%;
+  font-size: x-large;
 }
 </style>

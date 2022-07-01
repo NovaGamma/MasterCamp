@@ -32,6 +32,9 @@ export function route(app) {
   app.route("/vote/vote")
     .post(userHandlers.loginRequired, voteHandlers.vote); //login
 
+  app.route("/vote/code")
+    .post(userHandlers.loginRequired, voteHandlers.vote_code);
+
   app.route("/vote/findAllCommune")
     .get(voteHandlers.findByCommune); //admin
 
@@ -41,6 +44,9 @@ export function route(app) {
   // post request for user registration
   app.route("/auth/register")
    .post(userHandlers.register);
+
+  app.route("/auth/validate")
+    .post(userHandlers.validate);
 
   app.route("/auth/findAll")
     .get(userHandlers.findAll); //admin
