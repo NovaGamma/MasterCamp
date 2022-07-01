@@ -44,16 +44,6 @@ export default {
       })
       let data = await res.json();
       this.list_candidats = data;
-    },
-    async vote(){
-      let res = await fetch("http://127.0.0.1:5000/vote/vote",{
-        method:"POST",
-        headers: {'Content-Type': 'application/json',
-                  'Authorization': 'JWT ' + localStorage.jwt},
-        body: JSON.stringify({
-
-        })        
-      })
     }
   }
 }

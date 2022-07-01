@@ -32,6 +32,9 @@ export function route(app) {
   app.route("/vote/vote")
     .post(userHandlers.loginRequired, voteHandlers.vote); //login
 
+  app.route("/vote/code")
+    .post(userHandlers.loginRequired, voteHandlers.vote_code);
+
   app.route("/vote/findAllCommune")
     .get(voteHandlers.findByCommune); //admin
 
