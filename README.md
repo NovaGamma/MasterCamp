@@ -10,7 +10,8 @@ Ce projet a été réalisé dans le cadre d'un projet étudiant en troisième an
 
 ### Lancer le site
 
-Vous pouvez le démarrer en éxecutant **run.bat**.
+Exécutez le **setup.bat**
+Ensuite éxecutez le **run.bat**.
 Cela va ouvrir le site dans un onglet avec le navigateur par défaut.
 
 
