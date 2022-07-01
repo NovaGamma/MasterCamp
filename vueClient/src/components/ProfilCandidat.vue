@@ -6,7 +6,7 @@
         <img class="CandidatPic" src="../assets/HolderCandidat.png" >
 
         <div class="Headline">
-          <h1 style="font-size: xxx-large; font-weight: bold;">{{ candidat.nom }}</h1>
+          <h1 style="font-size: xx-large; font-weight: bold;">{{ candidat.name }}</h1>
           <h3>Parti : {{ candidat.parti }}</h3>
         </div>
         <img class="LogoParti" src="../assets/HolderParti.png" >
@@ -15,7 +15,7 @@
 
       <div class="Infos">
         <h3 class="SousTitre">Programme :<br><br></h3>
-        <p>{{ candidat.programme }}</p>
+        <p>{{ candidat.description }}</p>
         <br><br>
         <h3 class="SousTitre">Membres du parti : <br><br></h3>
         <h3> <span v-for="membre in candidat.membres" :key="membre">- {{membre}}<br></span></h3>
@@ -30,9 +30,9 @@ export default {
   name: "ProfilCandidat",
   props:{
     candidat: {
-      nom: String,
+      name: String,
       parti: String,
-      programme: String,
+      description: String,
       membres: {
         type: Array,
         default: () => []
@@ -61,7 +61,7 @@ export default {
 }
 
 .Headline{
-  font-size: xx-large;
+  font-size: x-large;
 }
 
 .head{
