@@ -2,9 +2,7 @@
   <NavBar/>
   <section class="container">
 
-    <div class="flex">
-      <Voter class="ListeCandidatVote" v-for="(voter,index) in list_candidats" :key="index" :voter="voter"/>
-    </div>
+    <Voter class="ListeCandidatVote" v-for="(voter,index) in list_candidats" :key="index" :voter="voter"/>
 
   </section>
 
@@ -65,13 +63,6 @@ export default {
   box-shadow: 0px 0px 5px 5px lightgrey;
   border: none;
   word-wrap: normal;
-}
-
-.Profil{
-  display: flex;
-  background-color: white;
-  justify-content: center;
-  margin: 20px;
 }
 
 .container{

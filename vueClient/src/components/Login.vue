@@ -87,6 +87,7 @@ export default {
   border: none;
   box-shadow: inset 0px 0px 10px 3px lightgrey;
   padding: 10px;
+  margin-bottom: 20px;
   width: 90%;
 }
 

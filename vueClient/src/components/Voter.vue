@@ -1,19 +1,23 @@
 <template>
 
-  <div>
+  <div style="display: flex; flex-wrap: wrap;justify-content: space-between;  width: 55%;">
 
-    <img class="CandidatPic" src="../assets/HolderCandidat.png" >
+    <div class="fdp">
+      <img class="CandidatPic" src="../assets/HolderCandidat.png" >
+      <div class="text">
 
-    <div class="text">
-      
-      <h1 style="font-weight: bold;">{{ voter.name }}</h1> <br>
-      <h2>Parti : {{ voter.parti }}</h2> <br>
-        
+        <h1 style="font-weight: bold;">{{ voter.name }}</h1> <br>
+        <h2>Parti : {{ voter.parti }}</h2> <br>
+
+      </div>
+
     </div>
 
-    <!--BUTTON-->
-    <input v-if="state" v-model="code" placeholder="vote code">
-    <button class="voteButton"  @click="confirm_popup()">Voter</button>
+    <div class="fdp" style="justify-content: space-evenly;flex-grow: 1">
+      <!--BUTTON-->
+      <input class="inputCode" v-if="state" v-model="code" placeholder="Code">
+      <button class="voteButton"  @click="confirm_popup()">Voter</button>
+    </div>
 
   </div>
 
@@ -85,30 +89,47 @@ export default {
 
 <style scoped>
 
+
+.fdp{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.inputCode{
+  box-shadow: inset 0px 0px 5px 3px lightgrey;
+  border: none;
+  border-radius: 5px;
+  width: 20%;
+  min-width: 150px;
+  height: 35px;
+  font-size: large;
+}
+
 .CandidatPic{
   width: 100px;
-  margin: 20px;
+  padding: 10px;
+  margin: 0px;
 }
 
 .text{
-    flex: 10;
-  margin: 10px;
+  padding: 10px;
   text-align: left;
   word-wrap: normal;
+  margin: 0px;
 }
 
 .voteButton{
-    display: flex;
-    flex-wrap: wrap;
-    flex: 1;
-    margin-right: 100px;
-    justify-content: center;
-    font-size: x-large;
-    border:none;
-    box-shadow: 0px 0px 10px 3px lightgrey;
-    border-radius: 6px;
-    background-color:rgb(128,179,255);
-    color:white;
+  justify-content: center;
+  font-size: x-large;
+  border:none;
+  box-shadow: 0px 0px 10px 3px lightgrey;
+  border-radius: 6px;
+  background-color:rgb(128,179,255);
+  color:white;
+  height: 40px;
+  max-min-width: 30%;
+  align-self: center;
 }
 
 .voteButton:hover{

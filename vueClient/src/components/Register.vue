@@ -107,7 +107,7 @@ export default {
   border-radius: 10px;
   border: none;
   box-shadow: inset 0px 0px 10px 3px lightgrey;
-  margin: 10px;
+  margin-bottom: 20px;
   width: 94%;
   height: 50px;
   color: grey;
