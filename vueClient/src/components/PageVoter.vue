@@ -1,7 +1,7 @@
 <template>
   <NavBar/>
   <section v-if="!user.hasVoted" class="container">
-      <Voter class="ListeCandidatVote" v-for="(voter,index) in list_candidats" :key="index" :voter="voter"/>
+      <Voter class="ListeCandidatVote" v-for="(voter,index) in list_candidats" :key="index" :voter="voter" :img="list_images[index]"/>
   </section>
   <section v-else class="containerValid">
     <div class="textValid">
@@ -15,6 +15,22 @@
 import Voter from "./Voter";
 import NavBar from "./NavBar";
 import VueJwtDecode from "vue-jwt-decode";
+
+import c1 from "../assets/sbCandidat.png";
+import p1 from "../assets/sbParti.png";
+
+import c2 from "../assets/lbCandidat.png";
+import p2 from "../assets/lbParti.png";
+
+import c3 from "../assets/emCandidat.png";
+import p3 from "../assets/emParti.png";
+
+import c4 from "../assets/lxCandidat.png";
+import p4 from "../assets/lxParti.png";
+
+import c5 from "../assets/tcCandidat.png";
+import p5 from "../assets/tcParti.png";
+
 export default {
   name: "PageVoter",
   components: {NavBar, Voter},
@@ -22,7 +38,29 @@ export default {
     return {
       indexCandidat: 0,
       list_candidats: [],
-      user: {type:Object}
+      user: {type:Object},
+      list_images: [
+        {
+          candidat: c1,
+          parti: p1
+        },
+        {
+          candidat: c2,
+          parti: p2
+        },
+        {
+          candidat: c3,
+          parti: p3
+        },
+        {
+          candidat: c4,
+          parti: p4
+        },
+        {
+          candidat: c5,
+          parti: p5
+        }
+      ]
     }
   },
   async mounted(){

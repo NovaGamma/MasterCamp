@@ -2,7 +2,7 @@
 
   <div>
 
-    <img class="CandidatPic" src="../assets/HolderCandidat.png" >
+    <img class="CandidatPic" :src="img.candidat" >
 
     <div class="text">
 
@@ -26,8 +26,11 @@ export default {
       name: String,
       parti: String,
       description: String,
+    },
+    img: {
+      candidat: String,
+      parti: String
     }
-
   },
 }
 </script>

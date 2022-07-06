@@ -2,8 +2,8 @@
 
   <div style="display: flex; flex-wrap: wrap;justify-content: space-between;  width: 55%;">
 
-    <div class="fdp">
-      <img class="CandidatPic" src="../assets/HolderCandidat.png" >
+    <div class="button">
+      <img class="CandidatPic" :src="img.candidat" >
       <div class="text">
 
         <h1 style="font-weight: bold;">{{ voter.name }}</h1> <br>
@@ -13,7 +13,7 @@
 
     </div>
 
-    <div class="fdp" style="justify-content: space-evenly;flex-grow: 1">
+    <div class="button" style="justify-content: space-evenly;flex-grow: 1">
       <!--BUTTON-->
       <input class="inputCode" v-if="state" v-model="code" placeholder="Code">
       <button class="voteButton"  @click="confirm_popup()">Voter</button>
@@ -81,8 +81,11 @@ export default {
   props:{
     voter: {
       type:Object
+    },
+    img: {
+      candidat: String,
+      parti: String
     }
-
   },
 }
 </script>
@@ -90,7 +93,7 @@ export default {
 <style scoped>
 
 
-.fdp{
+.button{
   display: flex;
   flex-wrap: wrap;
   align-items: center;

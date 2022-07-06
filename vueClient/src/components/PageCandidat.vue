@@ -5,12 +5,12 @@
   <section class="container">
 
     <div class="flex" v-if="!showCandidat">
-      <Candidat class="ListeCandidat" v-for="(candidat,index) in list_candidats" :key="index" :candidat="candidat" v-on:click="showCandidate(index)"/>
+      <Candidat class="ListeCandidat" v-for="(candidat,index) in list_candidats" :key="index" :candidat="candidat" :img="list_images[index]" v-on:click="showCandidate(index)"/>
     </div>
 
     <div v-else>
       <button class="retour" v-on:click="showCandidat=false">Retour</button>
-      <ProfilCandidat class="Profil"  :candidat="list_candidats[indexCandidat]"/>
+      <ProfilCandidat class="Profil"  :candidat="list_candidats[indexCandidat]" :img="list_images[indexCandidat]"/>
     </div>
 
   </section>
@@ -22,6 +22,22 @@ import Candidat from "./Candidat";
 import ProfilCandidat from "./ProfilCandidat";
 import NavBar from "./NavBar";
 import VueJwtDecode from "vue-jwt-decode";
+
+import c1 from "../assets/sbCandidat.png";
+import p1 from "../assets/sbParti.png";
+
+import c2 from "../assets/lbCandidat.png";
+import p2 from "../assets/lbParti.png";
+
+import c3 from "../assets/emCandidat.png";
+import p3 from "../assets/emParti.png";
+
+import c4 from "../assets/lxCandidat.png";
+import p4 from "../assets/lxParti.png";
+
+import c5 from "../assets/tcCandidat.png";
+import p5 from "../assets/tcParti.png";
+
 export default {
   name: "PageCandidat",
   components: {NavBar, ProfilCandidat, Candidat},
@@ -30,6 +46,28 @@ export default {
       indexCandidat: 0,
       showCandidat: false,
       list_candidats: [],
+      list_images: [
+        {
+          candidat: c1,
+          parti: p1
+        },
+        {
+          candidat: c2,
+          parti: p2
+        },
+        {
+          candidat: c3,
+          parti: p3
+        },
+        {
+          candidat: c4,
+          parti: p4
+        },
+        {
+          candidat: c5,
+          parti: p5
+        }
+      ]
     }
   },
   async mounted(){
