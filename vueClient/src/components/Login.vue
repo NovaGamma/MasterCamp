@@ -43,7 +43,6 @@ export default {
       .then(data => {
         if(data.token){
           localStorage.setItem('jwt', data.token);
-          this.emitter.emit("token_update")
           this.$router.push("/");
         }
         else{

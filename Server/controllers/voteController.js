@@ -37,9 +37,18 @@ var vote = async (req, res) => {
             // Save a Vote in the MongoDB
             user.hasVoted = true;
             user.save()
+            .then(data => {
+                //res.send(data);
+            }).catch(err => {
+                res.status(500).send({
+                    message: err.message
+                });
+            });
             vote.save()
             .then(data => {
-                res.send(data);
+                res.status(201).send({
+                    message: "ok"
+                });
             }).catch(err => {
                 res.status(500).send({
                     message: err.message
@@ -72,10 +81,10 @@ var vote_code = async (req, res) => {
         }
         code = code.join('')
         user.code = code
-
+        console.log(code);
         await user.save()
         let html = get_html_vote(user)
-        send_mail(user, "Code vote Votons Tous", html)
+        //send_mail(user, "Code vote Votons Tous", html)
         return res.status(201).send({message: "Code has been sent"})
     }
 }

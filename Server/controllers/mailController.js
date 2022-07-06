@@ -4,39 +4,44 @@ const OAuth2 = google.Auth.OAuth2Client
 import {mail} from '../config.js'
 
 
-const OAuth2_client = new OAuth2(mail.clientId, mail.clientSecret)
-OAuth2_client.setCredentials({refresh_token : mail.refreshToken})
 
 var send_mail = (user, subject, html) => {
-  const accessToken = OAuth2_client.getAccessToken();
-
-  const transport = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      type: 'OAuth2',
-      user: mail.user,
-      clientId: mail.clientId,
-      clientSecret: mail.clientSecret,
-      refreshToken: mail.refreshToken,
-      accessToken: accessToken
+  
+  try{
+    const OAuth2_client = new OAuth2(mail.clientId, mail.clientSecret)
+    OAuth2_client.setCredentials({refresh_token : mail.refreshToken})
+    const accessToken = OAuth2_client.getAccessToken();
+    const transport = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        type: 'OAuth2',
+        user: mail.user,
+        clientId: mail.clientId,
+        clientSecret: mail.clientSecret,
+        refreshToken: mail.refreshToken,
+        accessToken: accessToken
+      }
+    })
+    const mail_options = {
+      from: 'Votons Tous',
+      to: user.email,
+      subject: subject,
+      html: html
     }
-  })
-
-  const mail_options = {
-    from: 'Votons Tous',
-    to: user.email,
-    subject: subject,
-    html: html
+  
+    transport.sendMail(mail_options, function(error, result){
+      if(error){
+        console.log('Error ', error)
+      } else {
+        console.log('Success ', result)
+      }
+      transport.close()
+    })
   }
-
-  transport.sendMail(mail_options, function(error, result){
-    if(error){
-      console.log('Error ', error)
-    } else {
-      console.log('Success ', result)
-    }
-    transport.close()
-  })
+  catch(error){
+    console.log(error)
+    return
+  }
 }
 
 var get_html_vote = (user) => {

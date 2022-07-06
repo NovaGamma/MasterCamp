@@ -79,7 +79,7 @@ const routes = [
     name: 'PageVoter',
     component: PageVoter,
     meta: {
-      requiresAuth: false,
+      requiresAuth: true,
     }
   },
 ]
@@ -98,7 +98,6 @@ function isAdmin(){
   let decoded = VueJwtDecode.decode(localStorage.getItem('jwt'));
   if(decoded.exp < Date.now()/1000) return false;
   let user = decoded;
-  if (user.fullName == "Admin" && user.email == "admin@test.com") return true;
   return false
 }
 

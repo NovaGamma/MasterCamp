@@ -69,12 +69,23 @@ export default {
               candidatID:this.voter._id
             })        
           })
+          console.log(res)
           if(!res.ok){
             alert(res)
             return
           }
-          this.$router.push('/');
-          alert("Merci d'avoir voté !");
+          fetch("http://localhost:5000/auth/refresh",{
+                method:'GET',
+              headers: {'Authorization': 'JWT ' + localStorage.jwt},
+            })
+            .then(response => response.json())
+            .then(data => {
+              if(data.token){
+                localStorage.setItem('jwt', data.token);
+              }
+            this.$router.push('/');
+            alert("Merci d'avoir voté !");
+            })
         }
       }
     },

@@ -35,7 +35,7 @@ var validate = (req, res) => {
     user.validated = true;
     user.save();
     let html = get_html_validation(user)
-    send_mail(user, "Validation compte Votons Tous", html)
+    //send_mail(user, "Validation compte Votons Tous", html)
     return res.status(200)
   })
 }
@@ -58,6 +58,13 @@ var signIn = (req, res) => {
         }
       }
     });
+}
+
+var refresh_token = (req, res) => {
+  User.findOne({_id:req.user._id})
+  .then(user => {
+    return res.json({token: jwt.sign({email: user.email, fullName: user.fullName, voterID: user.voterID, _id: user._id, communeID:user.commune, hasVoted:user.hasVoted}, auth.secret, {expiresIn: 86400})})
+  })
 }
 
 var loginRequired = (req, res, next) => {
@@ -141,4 +148,4 @@ var findByCommune = (req, res) => {
     });
 }
 
-export {register, signIn, loginRequired, findOne, remove, findAll, findByCommune, validate};
+export {register, signIn, loginRequired, findOne, remove, findAll, findByCommune, validate, refresh_token};
