@@ -53,7 +53,7 @@ var signIn = (req, res) => {
           if(!user.comparePassword(req.body.password)){
             return res.status(401).json({message: 'Authentification failed. Wrong password'});
           } else {
-            return res.json({token: jwt.sign({email: user.email, fullName: user.fullName, voterID: user.voterID, _id: user._id, communeID:user.commune}, auth.secret, {expiresIn: 86400})
+            return res.json({token: jwt.sign({email: user.email, fullName: user.fullName, voterID: user.voterID, _id: user._id, communeID:user.commune, hasVoted:user.hasVoted}, auth.secret, {expiresIn: 86400})
           });
         }
       }

@@ -70,7 +70,7 @@ export default {
             })        
           })
           if(!res.ok){
-            alert(res.message)
+            alert(res)
             return
           }
           this.$router.push('/');
