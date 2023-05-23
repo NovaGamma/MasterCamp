@@ -3,23 +3,20 @@
     <section class="container2">
 
       <div class="head">
-        <img class="CandidatPic" src="../assets/HolderCandidat.png" >
+        <img class="CandidatPic" :src="img.candidat" >
 
         <div class="Headline">
           <h1 style="font-size: xx-large; font-weight: bold;">{{ candidat.name }}</h1>
           <h3>Parti : {{ candidat.parti }}</h3>
         </div>
-        <img class="LogoParti" src="../assets/HolderParti.png" >
+        <img class="LogoParti" :src="img.parti" >
 
       </div>
 
       <div class="Infos">
         <h3 class="SousTitre">Programme :<br><br></h3>
         <p>{{ candidat.description }}</p>
-        <br><br>
-        <h3 class="SousTitre">Membres du parti : <br><br></h3>
-        <h3> <span v-for="membre in candidat.membres" :key="membre">- {{membre}}<br></span></h3>
-
+        <br>
       </div>
     </section>
   </div>
@@ -32,13 +29,12 @@ export default {
     candidat: {
       name: String,
       parti: String,
-      description: String,
-      membres: {
-        type: Array,
-        default: () => []
-      }
+      description: String
+    },
+    img: {
+      candidat: String,
+      parti: String
     }
-
   },
 }
 </script>

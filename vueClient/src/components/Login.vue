@@ -43,7 +43,6 @@ export default {
       .then(data => {
         if(data.token){
           localStorage.setItem('jwt', data.token);
-          this.emitter.emit("token_update")
           this.$router.push("/");
         }
         else{
@@ -87,6 +86,7 @@ export default {
   border: none;
   box-shadow: inset 0px 0px 10px 3px lightgrey;
   padding: 10px;
+  margin-bottom: 20px;
   width: 90%;
 }
 

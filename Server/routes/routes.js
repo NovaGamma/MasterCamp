@@ -24,10 +24,6 @@ export function route(app) {
 
   app.route("/candidat/findAll")
     .get(candidatHandlers.findAll); //admin
-   //app.route("/api/delete_comments")
-   //  .post(userHandlers.loginRequired, commentsList.deleteAll); // update with login handler
-   //app.route("/api/comments_by_name")
-   //  .get(commentsList.findByName); // update with login handler
 
   app.route("/vote/vote")
     .post(userHandlers.loginRequired, voteHandlers.vote); //login
@@ -47,6 +43,9 @@ export function route(app) {
 
   app.route("/auth/validate")
     .post(userHandlers.validate);
+
+  app.route("/auth/refresh")
+    .get(userHandlers.loginRequired,userHandlers.refresh_token);
 
   app.route("/auth/findAll")
     .get(userHandlers.findAll); //admin
